@@ -1,0 +1,104 @@
+/*PEN STYLES*/
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans:300);
+
+
+.splendid-page {
+
+    .title {
+        font-family: Open Sans, sans-serif;
+        font-size: 55px;
+        font-style: bold;
+        text-align: center;
+    }
+
+    nav {
+        font-family: Open Sans, sans-serif;
+        text-align: center;
+        word-spacing: 30px;
+        a {
+            text-decoration: none;
+            color: #CAD3E0;
+        }
+    }
+
+    .container {
+        margin: 2em auto;
+        text-align: center;
+    }
+
+    ul.blog-post {
+        padding: 0;
+        list-style: none;
+        font-size: 0px;
+        margin-left: -2.5%;
+        li {
+            display: inline-block;
+            border-radius: 3px;
+            padding: 1.5em;
+            width: 400px;
+            margin: 0 0 2.5% 2.5%;
+            background: #fff;
+            border: 1px solid #eee;
+            font-size: 16px;
+            font-size: 1rem;
+            vertical-align: top;
+            box-shadow: 0 0 6px #eee;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            img {
+                max-width: 100%;
+                height: auto;
+                margin: 0 0 10px;
+            }
+            h3 {
+                margin: 0.6em 0 0.6em;
+                text-align: left !important;
+                font-family: Source Sans Pro, sans-serif;
+                color: #333;
+                font-size: 1.1em;
+            }
+            p {
+                margin: 0.6em 0 1.3em;
+                font-size: .9em;
+                line-height: 1.5em;
+                color: #8c8c8c;
+                text-align: left !important;
+                font-family: Open Sans, sans-serif;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .button {
+        text-align: center;
+        width: 20%;
+        border: none;
+        background: #36B3A8;
+        font-family: Open Sans, sans-serif;
+        font-weight: 300;
+        font-size: 0.7em;
+        color: white;
+        border-radius: 5px;
+        padding: 8px 15px 8px 15px;
+        &:hover {
+            opacity: 0.9;
+            cursor: pointer;
+        }
+    }
+
+    ul.blog-post.columns-2 li {
+        width: 37%;
+    }
+
+    @media (max-width: 480px) {
+        ul.blog-post {
+            margin-left: 0;
+            li {
+                width: 100% !important;
+                margin: 0 0 20px;
+            }
+        }
+    }
+}

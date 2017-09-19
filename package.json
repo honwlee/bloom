@@ -1,0 +1,54 @@
+{
+  "name": "uas",
+  "description": "authentication center for utilhub!",
+  "version": "0.1.0",
+  "engines": {
+    "node": "6.0.x",
+    "npm": "3.8.x"
+  },
+  "scripts": {
+    "prod": "node server.js --mode=prod",
+    "local": "node server.js --mode=dev --server=true",
+    "dev": "node server.js --mode=dev",
+    "local:host": "npm run local --reporter host"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.16.0",
+    "bourbon": "^4.3.4",
+    "cookie-parser": "^1.4.3",
+    "csvtojson": "^1.1.7",
+    "debug": "~2.6.0",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
+    "handlebar": "^1.0.0",
+    "json-server": "^0.12.0",
+    "lodash": "^4.17.4",
+    "lowdb": "^1.0.0",
+    "method-override": "^2.3.8",
+    "minimist": "^1.2.0",
+    "morgan": "^1.8.1",
+    "openam": "https://github.com/honwlee/node-openam.git",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "passport-openam": "https://github.com/honwlee/passport-openam.git",
+    "path": "~0.4.9",
+    "pluralize": "^7.0.0",
+    "q": "^1.5.0",
+    "request": "^2.81.0",
+    "serve-favicon": "^2.4.2",
+    "shortid": "^2.2.8",
+    "underscore-db": "^0.12.2"
+  },
+  "devDependencies": {
+    "node-bourbon": "^4.2.8"
+  }
+}

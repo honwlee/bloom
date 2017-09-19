@@ -1,0 +1,157 @@
+ <div>
+     <script id="photoSwipe-partial"  type="text/x-handlebars-template">
+         <section class="features photo-container" id="photosContainer">
+            <div class="container">
+                <div class="section section--head">
+                    <div class="row">
+                        <div class="items-container">
+                            {{#each photos}}
+                                {{> photoSwipe-item-partial}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </script>
+    <script id="photoSwipe-item-partial"  type="text/x-handlebars-template">
+        <a href="{{normal}}" data-size="{{size}}" data-med="{{big}}" data-med-size="{{size}}" class="{{imgClass}}">
+            <img src="{{mini}}" alt="" />
+            <figure>{{desc}}</figure>
+        </a>
+    </script>
+
+    <script id="gallery-partial" type="text/x-handlebars-template">
+        <div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="pswp__bg"></div>
+
+            <div class="pswp__scroll-wrap">
+
+              <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+              </div>
+
+              <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                  <div class="pswp__caption__center">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </script>
+
+    <script id="user-item-partial" type="text/x-handlebars-template">
+        <div class="user-s-info">
+            <img src={{avatar}} class="mini-avatar">
+            <span class="name">{{username}}</span>
+            <span class="mobile">{{mobile}}</span>
+            <span class="email">{{email}}</span>
+        </div>
+    </script>
+
+    <script id="post-item-partial" type="text/x-handlebars-template">
+        <div class="thumbnail">
+            <img src="{{imgSrc}}" alt="...">
+              <div class="caption">
+                <h3>{{title}}</h3>
+                <div>{{{content}}}</div>
+                <p><a href="#" class="btn btn-primary blog-preview-btn" role="button">点击查看</a></p>
+            </div>
+        </div>
+    </script>
+
+     <script id="photo-crop-partial" type="text/x-handlebars-template">
+        <div class="photo-crop">
+            <div class="left-side">
+                <div class="crop-upload">
+                    <div class="img-upload-input">
+                        <label class="img-upload-label">上传图片（目前支持的图片格式：jpg, png, gif）</label>
+                        <input id="lefile" type="file" style="display:none">
+                        <a class="btn btn-default" onclick="$('input[id=lefile]').click();">点击上传文件</a>
+                    </div>
+
+                    {{!-- <div class="action-btns pull-right">
+                        <i class="item plus fa fa-search-plus" data-action="zoom-out"></i>
+                        <i class="item minus fa fa-search-minus" data-action="zoom-in"></i>
+                        <i class="item left fa fa-rotate-left" data-action="rotated-left"></i>
+                        <i class="item right fa fa-rotate-right" data-action="rotated-right"></i>
+                    </div> --}}
+                </div>
+                <div class="docs-preview">
+                    <div class="img-preview js-image-preview">
+                        <img />
+                    </div>
+                </div>
+                <div class="upload-desc">
+                    <p>1. 点击上面的上传按钮</p>
+                    <p>2. 滚动鼠标可以调整背景图大小</p>
+                    <p>3. 移动剪切框，裁剪图片</p>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="img-container">
+                    <img class="js-image-editor" />
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="color-partial" type="text/x-handlebars-template">
+        <div class="container color-container">
+            <div class="material-color-picker">
+                <div class="material-color-picker__left-panel">
+                    <ol class="color-selector" data-bind="foreach: materialColors">
+                        <li>
+                            <input name="material-color" type="radio" data-bind="attr: { id: 'materialColor' + $index() }, checked: selectedColor, value: color" >
+                            <label data-bind="attr: { for: 'materialColor' + $index(), title: color }, style: { 'color': $data.variations[4].hex }"></label>
+                        </li>
+                    </ol>
+                </div>
+                <div class="material-color-picker__right-panel" data-bind="foreach: materialColors">
+                    <div class="color-palette-wrapper" data-bind="css: { 'js-active': selectedColor() === color }">
+                        <h2 class="color-palette-header" data-bind="text: color"></h2>
+                        <ol class="color-palette" data-bind="foreach: variations">
+                            <li id="clipboardItem" class="color-palette__item" data-bind="attr: { 'data-clipboard-text': hex }, style: { 'background-color': hex }">
+                                <span data-bind="text: weight"></span>
+                                <span data-bind="text: hex"></span>
+                                <span class="copied-indicator" data-bind="css: { 'js-copied': copiedHex() === hex }">Color copied!</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>

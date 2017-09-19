@@ -1,0 +1,32 @@
+[
+{
+    "big": "/assets/images/photos/1_TFL_A_RGB_9601.jpg",
+    "normal": "/assets/images/photos/1_TFL_A_RGB_9601.jpg",
+    "mini": "/assets/images/photos/1_TFL_A_RGB_9601.jpg",
+    "desc": "",
+    "size": "960x660"
+},{
+    "big": "/assets/images/photos/chateaufort.gif",
+    "normal": "/assets/images/photos/chateaufort.gif",
+    "mini": "/assets/images/photos/chateaufort.gif",
+    "desc": "",
+    "size": "500x500"
+},{
+    "big": "/assets/images/photos/wreck_monster.gif",
+    "normal": "/assets/images/photos/wreck_monster.gif",
+    "mini": "/assets/images/photos/wreck_monster.gif",
+    "desc": "",
+    "size": "500x500"
+},{
+    "big": "/assets/images/photos/chateausable2.gif",
+    "normal": "/assets/images/photos/chateausable2.gif",
+    "mini": "/assets/images/photos/chateausable2.gif",
+    "desc": "",
+    "size": "500x500"
+},{
+    "big": "/assets/images/photos/cabane2.gif",
+    "normal": "/assets/images/photos/cabane2.gif",
+    "mini": "/assets/images/photos/cabane2.gif",
+    "desc": "",
+    "size": "500x500"
+}]

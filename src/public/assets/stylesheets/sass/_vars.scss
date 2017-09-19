@@ -1,0 +1,20 @@
+// Colors
+$black: #000000;
+$white: invert($black);
+$light-gray: lighten($black,51.6%);
+$light-grey: opacify($black,0.4);
+$transparent-grey: transparentize($light-grey, 0.5);
+$gray: #D5DEDB;
+$light-gray: #e4e4e4;
+$dark-gray: #414545;
+$pink: #e8308c;
+$light-pink: #ee66aa;
+$blue: #16a9c7;
+$light-blue: #48DFE4;
+$lighten-blue: #d1f3fa;
+$dark-blue: #3080e8;
+$orange: #e86830;
+$green: #30e849;
+// UI colors
+$body__bg--color: $gray;
+$timeline__bg--color: #9ce5f4;

@@ -1,0 +1,398 @@
+// @import "bourbon";
+// variables - colors
+$main-text: #505260; // main text
+$background: #fff; // body background color
+$color-1: #343642; // blue-dark
+$color-2: #2f889a; // blue-light
+$color-3: #d2d8d8; // grey
+$red: #d76666; // error messages
+// variables - fonts
+$primary-font: 'PT Sans',
+sans-serif;
+
+// variables - z-index
+$header-zindex: 2;
+$modal-zindex: 3;
+
+// variables - header
+$header-height-S: 50px;
+$header-height-M: 80px;
+
+// layout - breakpoints
+$S: 600px;
+$M: 768px;
+$L: 1170px;
+
+// layout - media queries
+@mixin MQ($canvas) {
+    @if $canvas==S {
+        @media only screen and (min-width: $S) {
+            @content;
+        }
+    }
+    @else if $canvas==M {
+        @media only screen and (min-width: $M) {
+            @content;
+        }
+    }
+    @else if $canvas==L {
+        @media only screen and (min-width: $L) {
+            @content;
+        }
+    }
+}
+
+// layout - super light grid - it works with the .cd-container class
+@mixin column($percentage, $float-direction:left) {
+    width: 100% * $percentage;
+    float: $float-direction;
+}
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+
+.auth-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-1, .9);
+    z-index: $modal-zindex;
+    overflow-y: auto;
+    cursor: pointer;
+
+    visibility: hidden;
+    opacity: 0;
+    @include transition(opacity .3s 0,
+    visibility 0 .3s);
+
+    &.is-visible {
+        visibility: visible;
+        opacity: 1;
+
+        @include transition(opacity .3s 0,
+        visibility 0 0);
+
+        // .cd-user-modal-container {
+        //     @include transform(translateY(0));
+        // }
+    }
+    a {
+        color: $color-2;
+        text-decoration: none;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    input,
+    textarea {
+        font-family: $primary-font;
+        @include font-size(16px);
+
+        &::-ms-clear {
+            display: none;
+        }
+    }
+    /* --------------------------------
+
+
+xsigin/signup popup
+
+-------------------------------- */
+    .cd-user-modal {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
+
+    .cd-user-modal-container {
+        max-width: 600px;
+        background: #FFF;
+        margin: 3em auto 4em;
+        cursor: auto;
+        height: auto;
+        position: absolute;
+        @include center(xy);
+        @include border-radius;
+        // @include transform(translateY(-30px));
+
+        @include transition-property (transform);
+        @include transition-duration(.3s);
+
+        .cd-switcher {
+            height: 70px;
+            li {
+                @include column(.5);
+                text-align: center;
+
+                &:first-child a {
+                    border-radius: .25em 0 0 0;
+                }
+
+                &:last-child a {
+                    border-radius: 0 .25em 0 0;
+                }
+            }
+
+            a {
+                display: block;
+                width: 100%;
+                height: 50px;
+                line-height: 50px;
+                background: $color-3;
+                color: darken($color-3, 30%);
+
+                &.selected {
+                    background: #FFF;
+                    color: $main-text;
+                }
+            }
+        }
+
+        @include respond-to($tablet-portrait) {
+            margin: 0 auto;
+            width: 100%;
+            .cd-switcher a {
+                height: 70px;
+                line-height: 70px;
+            }
+        }
+        @include respond-to($except-tablet) {
+            width: 90%;
+        }
+    }
+    .cd-form {
+        padding: 1.4em;
+        .fieldset {
+            position: relative;
+            margin: 1.4em 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        label {
+            @include font-size(14px);
+
+            &.image-replace {
+                /* replace text with an icon */
+                display: inline-block;
+                position: absolute;
+                left: 15px;
+                @include center(y);
+                height: 20px;
+                width: 20px;
+
+                overflow: hidden;
+                text-indent: 100%;
+                white-space: nowrap;
+                color: transparent;
+                text-shadow: none;
+
+                background-repeat: no-repeat;
+                background-position: 50% 0;
+            }
+
+            &.cd-username {
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-username.svg');
+            }
+
+            &.cd-email {
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-email.svg');
+            }
+
+            &.cd-password {
+                background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-password.svg');
+            }
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+            @include border-radius;
+
+            &.full-width {
+                width: 100%;
+            }
+
+            &.has-padding {
+                padding: 12px 20px 12px 50px;
+            }
+
+            &.has-border {
+                border: 1px solid $color-3;
+
+                &:focus {
+                    border-color: $color-1;
+                    box-shadow: 0 0 5px rgba($color-1, .1);
+                    outline: none;
+                }
+            }
+
+            &.has-error {
+                border: 1px solid $red;
+            }
+
+            &[type=password] {
+                /* space left for the HIDE button */
+                padding-right: 65px;
+            }
+
+            &[type=submit] {
+                padding: 16px 0;
+                cursor: pointer;
+                background: $color-2;
+                color: #FFF;
+                font-weight: bold;
+                border: none;
+
+                .no-touch &:hover,
+                .no-touch &:focus {
+                    background: lighten($color-2, 5%);
+                    outline: none;
+                }
+            }
+        }
+
+        .hide-password {
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 6px 15px;
+            border-left: 1px solid $color-3;
+            @include center(y);
+            @include font-size(14px);
+            color: $color-1;
+        }
+
+        .cd-error-message {
+            display: inline-block;
+            position: absolute;
+            left: -5px;
+            bottom: -35px;
+            background: rgba($red, .9);
+            padding: .8em;
+            z-index: 2;
+            color: #FFF;
+            @include font-size(13px);
+            @include border-radius;
+
+            /* prevent click and touch events */
+            pointer-events: none;
+
+            visibility: hidden;
+            opacity: 0;
+
+            @include transition(opacity .2s 0,
+            visibility 0 .2s);
+
+            &::after {
+                /* triangle */
+                content: '';
+                position: absolute;
+                left: 22px;
+                bottom: 100%;
+            }
+
+            &.is-visible {
+                opacity: 1;
+                visibility: visible;
+
+                @include transition(opacity .2s 0,
+                visibility 0 0);
+            }
+        }
+
+        @include MQ(S) {
+            padding: 2em;
+
+            .fieldset {
+                margin: 2em 0;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            input.has-padding {
+                padding: 16px 20px 16px 50px;
+            }
+
+            input[type=submit] {
+                padding: 16px 0;
+            }
+        }
+    }
+
+    .cd-form-message {
+        padding: 1.4em 1.4em 0;
+        @include font-size(14px);
+        line-height: 1.4;
+        text-align: center;
+
+        @include MQ(S) {
+            padding: 2em 2em 0;
+        }
+    }
+
+    .cd-form-bottom-message {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -30px;
+        text-align: center;
+        @include font-size(14px);
+
+        a {
+            color: #FFF;
+            text-decoration: underline;
+        }
+    }
+
+    .cd-close-form {
+        /* form X button on top right */
+        display: block;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 0;
+        top: -40px;
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-close.svg') no-repeat center center;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+
+        @include MQ(L) {
+            display: none;
+        }
+    }
+
+    #cd-login,
+    #cd-signup,
+    #cd-reset-password {
+        display: none;
+    }
+
+    #cd-login.is-selected,
+    #cd-signup.is-selected,
+    #cd-reset-password.is-selected {
+        display: block;
+    }
+}

@@ -1,0 +1,469 @@
+[
+{
+    "username": "王祥汶",
+    "birthday": "1987年1月",
+    "address": "高桥镇双江村",
+    "job": "新宁县邮政分公司",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15197932921",
+    "status": "已报名"
+},
+{
+    "username": "杨湘斌",
+    "birthday": "1987年9月",
+    "address": "万塘乡金溪村",
+    "job": "新宁县人民医院",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15273965173",
+    "status": "已报名"
+},
+{
+    "username": "于江龙",
+    "birthday": "1986年10月",
+    "address": "金石镇迎阳街",
+    "job": "湖南省电力设计院",
+    "jobAddress": "湖南省长沙市雨花区",
+    "mobile": "18684735911",
+    "status": "已报名"
+},
+{
+    "username": "杨昕昕",
+    "birthday": "1988年1月",
+    "address": "水庙镇枧杆村",
+    "job": "广州一锐专利代理有限公司",
+    "jobAddress": "广东省广州市黄埔区",
+    "mobile": "18620667127",
+    "status": "已报名"
+},
+{
+    "username": "陈  华",
+    "birthday": "1987年1月",
+    "address": "金石镇古田村",
+    "job": "",
+    "jobAddress": "广东省惠州市仲恺高新区",
+    "mobile": "18998136260",
+    "status": "已报名"
+},
+{
+    "username": "李红旺",
+    "birthday": "1987年6月",
+    "address": "清江桥乡清江桥村",
+    "job": "南昌互道科技有限公司",
+    "jobAddress": "江西省南昌市高新区",
+    "mobile": "15979000884",
+    "status": "已报名"
+},
+{
+    "username": "唐钰程",
+    "birthday": "1987年3月",
+    "address": "金石镇解放路",
+    "job": "新宁县交警大队",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "13574993999",
+    "status": "已报名"
+},
+{
+    "username": "李  琛",
+    "birthday": "1986年7月",
+    "address": "金石镇大兴路",
+    "job": "湖南省益阳市安化县马路镇政府",
+    "jobAddress": "湖南省益阳市安化县",
+    "mobile": "15367640622",
+    "status": "已报名"
+},
+{
+    "username": "何  杰",
+    "birthday": "1987年1月",
+    "address": "高桥镇石脚村",
+    "job": "",
+    "jobAddress": "广东省深圳市龙岗区",
+    "mobile": "18027669149",
+    "status": "已报名"
+},
+{
+    "username": "陈  琳",
+    "birthday": "1987年1月",
+    "address": "金石镇人民路",
+    "job": "华为技术有限公司",
+    "jobAddress": "广东省深圳市龙岗区",
+    "mobile": "18098928149",
+    "status": "已报名"
+},
+{
+    "username": "徐  敏",
+    "birthday": "1986年10月",
+    "address": "金石镇大兴路",
+    "job": "中国农业发展银行邵阳市支行",
+    "jobAddress": "湖南省邵阳市北塔区",
+    "mobile": "15573985899",
+    "status": "已报名"
+},
+{
+    "username": "邓  娜",
+    "birthday": "1988年1月",
+    "address": "金石镇大兴路",
+    "job": "新宁县中医医院",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18673966551",
+    "status": "已报名"
+},
+{
+    "username": "李孟波",
+    "birthday": "1986年9月",
+    "address": "金石镇水头村",
+    "job": "深圳市博纳尔科技有限公司",
+    "jobAddress": "广东省深圳市龙华区",
+    "mobile": "15920071532",
+    "status": "已报名"
+},
+{
+    "username": "何自然",
+    "birthday": "1987年2月",
+    "address": "金石镇大兴路",
+    "job": "湖南省怀化市人民医院",
+    "jobAddress": "湖南省怀化市",
+    "mobile": "18075983082",
+    "status": "已报名"
+},
+{
+    "username": "杨  能",
+    "birthday": "1986年4月",
+    "address": "金石镇人民路",
+    "job": "",
+    "jobAddress": "湖南省株洲市",
+    "mobile": "15673379228",
+    "status": "已报名"
+},
+{
+    "username": "李  锋",
+    "birthday": "1986年9月",
+    "address": "金石镇解放路",
+    "job": "中铁十八局集团华南区域指挥部",
+    "jobAddress": "湖南省长沙市开福区",
+    "mobile": "15367979505",
+    "status": "已报名"
+},
+{
+    "username": "蒋俭俭",
+    "birthday": "1987年3月",
+    "address": "金石镇解放路",
+    "job": "新宁县焦家垅小学",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "13762886944",
+    "status": "已报名"
+},
+{
+    "username": "周  运",
+    "birthday": "1986年6月",
+    "address": "金石镇大兴路",
+    "job": "新宁县总工会",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15807396269",
+    "status": "已报名"
+},
+{
+    "username": "廖海兵",
+    "birthday": "1985年2月",
+    "address": "金石镇广场路",
+    "job": "新宁_兴房地产公司",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18973975997",
+    "status": "已报名"
+},
+{
+    "username": "谢明峰",
+    "birthday": "1986年6月",
+    "address": "白沙镇马江村",
+    "job": "",
+    "jobAddress": "湖南省长沙市岳麓区",
+    "mobile": "15802508298",
+    "status": "已报名"
+},
+{
+    "username": "权爱清",
+    "birthday": "",
+    "address": "金石镇大兴路",
+    "job": "",
+    "jobAddress": "湖南省长沙市雨花区",
+    "mobile": "18075118758",
+    "status": "已报名"
+},
+{
+    "username": "邓厥平",
+    "birthday": "1986年11月",
+    "address": "清江桥乡五里村",
+    "job": "天津湘电电缆附件有限公司",
+    "jobAddress": "天津市河东区",
+    "mobile": "15122385545",
+    "status": "已报名"
+},
+{
+    "username": "徐  骏",
+    "birthday": "1986年5月",
+    "address": "金石镇大兴路",
+    "job": "铭丰造价公司",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15367643520",
+    "status": "已报名"
+},
+{
+    "username": "尹龙友",
+    "birthday": "1987年4月",
+    "address": "金石镇大兴路",
+    "job": "新宁县东方人眼镜",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15243958344",
+    "status": ""
+},
+{
+    "username": "李霞霖",
+    "birthday": "1986年10月",
+    "address": "金石镇光明街",
+    "job": "新宁县_山医院",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "15973943625",
+    "status": ""
+},
+{
+    "username": "徐  晨",
+    "birthday": "1988年5月",
+    "address": "金石镇解放路",
+    "job": "新宁县金石镇清江桥卫生院",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18973915084",
+    "status": ""
+},
+{
+    "username": "郑和泽",
+    "birthday": "1987年10月",
+    "address": "金石镇春风路",
+    "job": "湖南省委统战部",
+    "jobAddress": "湖南省长沙市开福区",
+    "mobile": "18207391888",
+    "status": ""
+},
+{
+    "username": "李小龙",
+    "birthday": "1986年8月",
+    "address": "金石镇水头村",
+    "job": "",
+    "jobAddress": "湖南省长沙市天心区",
+    "mobile": "18684737036",
+    "status": ""
+},
+{
+    "username": "舒国亮",
+    "birthday": "1986年12月",
+    "address": "马头桥镇金星村",
+    "job": "长沙市中心医院",
+    "jobAddress": "湖南省长沙市雨花区",
+    "mobile": "15802676715",
+    "status": ""
+},
+{
+    "username": "徐  群",
+    "birthday": "1987年4月",
+    "address": "新宁八中",
+    "job": "湖南新岭域信息科技有限公司",
+    "jobAddress": "湖南省长沙市长沙县",
+    "mobile": "13975170661",
+    "status": ""
+},
+{
+    "username": "唐  倩",
+    "birthday": "1987年3月",
+    "address": "金石镇",
+    "job": "新宁县委宣传部",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18273932315",
+    "status": ""
+},
+{
+    "username": "戴振杰",
+    "birthday": "1987年8月",
+    "address": "金石镇红卫街",
+    "job": "刘人岛艺术中心",
+    "jobAddress": "北京市海滨区",
+    "mobile": "15386440993",
+    "status": ""
+},
+{
+    "username": "李永平",
+    "birthday": "1987年1月",
+    "address": "飞仙桥乡范家山村",
+    "job": "",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18670256680",
+    "status": ""
+},
+{
+    "username": "尹玖雄",
+    "birthday": "1985年2月",
+    "address": "金石镇春风路",
+    "job": "广东省汕尾市海丰县飞龙家具厂",
+    "jobAddress": "广东省汕尾市海丰县",
+    "mobile": "18128410554",
+    "status": ""
+},
+{
+    "username": "李正群",
+    "birthday": "1986年10月",
+    "address": "白沙镇邓银村",
+    "job": "广东省肇庆市体育局",
+    "jobAddress": "广东省肇庆市端州区",
+    "mobile": "15918747148",
+    "status": ""
+},
+{
+    "username": "陈夏兰",
+    "birthday": "1987年5月",
+    "address": "金石镇田付村",
+    "job": "中科院",
+    "jobAddress": "北京市海滨区",
+    "mobile": "15210089892",
+    "status": ""
+},
+{
+    "username": "曾娟丽",
+    "birthday": "1987年1月",
+    "address": "飞仙桥乡五福庙村",
+    "job": "曙光信息产业股份有限公司",
+    "jobAddress": "湖南省长沙市开福区",
+    "mobile": "18670330509",
+    "status": ""
+},
+{
+    "username": "郑金红",
+    "birthday": "1987年6月",
+    "address": "金石镇江口桥村",
+    "job": "农夫山泉股份有限公司",
+    "jobAddress": "湖南省长沙市芙蓉区",
+    "mobile": "15974129928",
+    "status": ""
+},
+{
+    "username": "李甜桔",
+    "birthday": "",
+    "address": "",
+    "job": "",
+    "jobAddress": "",
+    "mobile": "",
+    "status": ""
+},
+{
+    "username": "徐梓婷",
+    "birthday": "1987年2月",
+    "address": "金石镇春风路",
+    "job": "华东建筑设计研究院",
+    "jobAddress": "上海市闸北区",
+    "mobile": "13661685062",
+    "status": ""
+},
+{
+    "username": "刘洋冰",
+    "birthday": "1987年8月",
+    "address": "金石镇解放路",
+    "job": "湖南省农林工业设计勘察研究总院",
+    "jobAddress": "湖南省长沙市雨花区",
+    "mobile": "18773188655",
+    "status": ""
+},
+{
+    "username": "漆洁媛",
+    "birthday": "1987年10月",
+    "address": "高桥镇烟村村",
+    "job": "北京兴华会计师事务所",
+    "jobAddress": "湖南省长沙市开福区",
+    "mobile": "13739062127",
+    "status": ""
+},
+{
+    "username": "陈楚楚",
+    "birthday": "1987年1月",
+    "address": "金石镇",
+    "job": "马思特培训学校",
+    "jobAddress": "湖南省长沙市岳麓区",
+    "mobile": "15898509500",
+    "status": ""
+},
+{
+    "username": "贾双干",
+    "birthday": "1986年8月",
+    "address": "白沙镇西冲村",
+    "job": "浙江福立分析仪器股份有限公司",
+    "jobAddress": "广东省广州市荔湾区",
+    "mobile": "13229443969",
+    "status": ""
+},
+{
+    "username": "李虎君",
+    "birthday": "",
+    "address": "",
+    "job": "",
+    "jobAddress": "",
+    "mobile": "",
+    "status": ""
+},
+{
+    "username": "李  良",
+    "birthday": "1986年9月",
+    "address": "安山乡安山村",
+    "job": "",
+    "jobAddress": "广西崇左市凭祥市",
+    "mobile": "13978798337",
+    "status": ""
+},
+{
+    "username": "刘  飞",
+    "birthday": "",
+    "address": "",
+    "job": "",
+    "jobAddress": "",
+    "mobile": "",
+    "status": ""
+},
+{
+    "username": "李  京",
+    "birthday": "1987年11月",
+    "address": "",
+    "job": "深圳东光电子",
+    "jobAddress": "广东省深圳市龙华区",
+    "mobile": "13128943548",
+    "status": ""
+},
+{
+    "username": "牛洛军",
+    "birthday": "1986年9月",
+    "address": "金石镇春风路",
+    "job": "崀韵电子商务",
+    "jobAddress": "湖南省邵阳市新宁县",
+    "mobile": "18873909143",
+    "status": ""
+},
+{
+    "username": "邓盼盼",
+    "birthday": "1986年10月",
+    "address": "高桥镇柏叶村",
+    "job": "",
+    "jobAddress": "广东省广州市白云区",
+    "mobile": "15019256952",
+    "status": ""
+},
+{
+    "username": "罗彦宾",
+    "birthday": "",
+    "address": "",
+    "job": "",
+    "jobAddress": "江苏省南京市",
+    "mobile": "15805156184",
+    "status": ""
+},
+{
+    "username": "郭  展",
+    "birthday": "",
+    "address": "",
+    "job": "",
+    "jobAddress": "",
+    "mobile": "",
+    "status": ""
+}]

@@ -1,0 +1,323 @@
+// Mixins
+@mixin box-shadow {
+    -webkit-box-shadow: -1px 5px 18px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 5px 18px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 5px 18px -7px rgba(0, 0, 0, 0.75);
+}
+
+@mixin media-query-max($width) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin absolute-center($width: 50%, $min-width: 200px) {
+    width: $width;
+    min-width: $min-width;
+    height: auto;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+// mixins - rem fallback - credits: http://zerosixthree.se/
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+@mixin list-content($prefix, $l:10%, $c: 100%, $r: 10%) {
+    .#{$prefix}__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        padding: 0.8em 0;
+        letter-spacing: 0.13em;
+        .actions {
+            font-size: 16px;
+            .evt-action-item {}
+        }
+        & .#{$prefix}__content--date {
+            flex-basis: $r;
+            font-size: 16px;
+            color: $dark-gray;
+            @include media-query-max(540px) {
+                font-size: 13px;
+            }
+        }
+
+        & .#{$prefix}__timeline {
+            display: flex;
+            align-items: center;
+            flex-basis: $l;
+            justify-content: center;
+
+            & .#{$prefix}__timeline--line {
+                border-right: 0.4em $timeline__bg--color solid;
+                height: 6em;
+                transform: translateY(-3em);
+                position: absolute;
+                @include media-query-max(378px) {
+                    height: 6.66em;
+                    border-right-width: 0.2em;
+                }
+            }
+
+            & .#{$prefix}__timeline--circle {
+                transform: translateX(-0.045em);
+                width: 1.2em;
+                height: 1.2em;
+                border-radius: 50%;
+                background-color: $timeline__bg--color;
+            }
+        }
+
+        & .#{$prefix}__content--info {
+            flex-basis: $c;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5em 2.5em;
+            background: $light-gray;
+            border-radius: 0.4em;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            @include media-query-max(540px) {
+                font-size: 11px;
+            }
+            @include media-query-max(457px) {
+                flex-basis: 80%;
+            }
+
+            &:hover {
+                background: $light-blue;
+                color: $white;
+            }
+
+            & .event-description {
+                align-self: flex-start;
+            }
+
+            & .event-hour {
+                align-self: flex-end;
+                color: $dark-gray;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+@mixin default-avatar($name, $w: 115px, $h:115px) {
+    .#{$name} {
+        position: relative;
+        overflow: hidden;
+        width: $w;
+        height: $h;
+        margin: auto;
+        background: #ddd;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 70%;
+            height: 44%;
+            margin: 0 0 0 -35%;
+            background: #989898;
+            -webkit-border-radius: 100% 100% 0 0;
+            border-radius: 100% 100% 0 0
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 19%;
+            width: 40%;
+            height: 40%;
+            margin: 0 0 0 -20%;
+            background: #989898;
+            -webkit-box-shadow: 0 0 0 4px #DCDCDC;
+            box-shadow: 0 0 0 4px #DCDCDC;
+            -webkit-border-radius: 50%;
+            border-radius: 50%
+        }
+
+        img {
+            position: relative;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            z-index: 10
+        }
+    }
+}
+
+// mixins - border radius
+@mixin border-radius($radius:.25em) {
+    border-radius: $radius;
+}
+
+@mixin center($xy:xy) {
+    @if $xy==xy {
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        @include transform(translateX(-50%) translateY(-50%));
+    }
+    @else if $xy==x {
+        left: 50%;
+        right: auto;
+        @include transform(translateX(-50%));
+    }
+    @else if $xy==y {
+        top: 50%;
+        bottom: auto;
+        @include transform(translateY(-50%));
+    }
+}
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transition-property($property...) {
+    -moz-transition-property: $property;
+    -o-transition-property: $property;
+    -webkit-transition-property: $property;
+    transition-property: $property;
+}
+
+@mixin transition-duration($duration...) {
+    -moz-transition-property: $duration;
+    -o-transition-property: $duration;
+    -webkit-transition-property: $duration;
+    transition-property: $duration;
+}
+
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function: $timing;
+    -o-transition-timing-function: $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function: $timing;
+}
+
+@mixin transition-delay($delay...) {
+    -moz-transition-delay: $delay;
+    -o-transition-delay: $delay;
+    -webkit-transition-delay: $delay;
+    transition-delay: $delay;
+}
+
+@mixin wordEllipsis {
+    word-break: break-all;
+    word-wrap: normal;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@mixin outline-none {
+    * {
+        outline: none;
+    }
+}
+
+@-webkit-keyframes pulsate {
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+
+@-moz-keyframes pulsate {
+    0% {
+        -moz-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        -moz-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+
+@-ms-keyframes pulsate {
+    0% {
+        -ms-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        -ms-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+
+@-o-keyframes pulsate {
+    0% {
+        -o-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        -o-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
+}

@@ -1,0 +1,125 @@
+<div>
+    <script id="profile-main" type="text/x-handlebars-template">
+        <div class="app profile-page">
+            <header class="header" role="banner">
+                <div class="header-item__img">
+                    <div class="default-avatar">
+                        <img src="{{contact.avatar}}" />
+                    </div>
+                    <h2>{{user.username}}</h2>
+                    <h3>{{user.email}}</h3>
+                </div>
+            </header>
+            <main class="main-profile" role="main">
+                <div class="main__wrapper">
+                    <div class="icons">
+                        {{#each actions}}
+                            <div><i class="action-item {{name}} fa {{icon}}" data-name="{{name}}" title="{{title}}" aria-hidden="true"></i></div>
+                        {{/each}}
+                    </div>
+                    <div class="panel panel-item panel__padding photos hide">
+                        <section class="photoSwipeContainer"></section>
+                    </div>
+                    <div class="panel panel-item panel__padding profile hide">
+                        <div class="info">
+                            <h2>{{user.username}}</h2>
+                            <p><strong>邮箱：</strong> {{user.email}} </p>
+                            <p><strong>手机号码：</strong> {{contact.mobile}} </p>
+                            <p><strong>生日：</strong> {{contact.birthday}} </p>
+                            <p><strong>真实姓名：</strong>{{contact.username}}</p>
+                            <p><strong>地址：</strong>{{contact.address}}</p>
+                            <p><strong>工作：</strong>{{contact.job}}</p>
+                            <p><strong>工作地址：</strong>{{contact.jobAddress}}</p>
+                        </div>
+                    </div>
+                    <div class="main__panel panel panel-item posts hide">
+                        <div class="main__panel--img"><img src="https://d13yacurqjgara.cloudfront.net/users/57858/screenshots/3300668/damndaniel_dribbble_1x.jpg" /></div>
+                        <div class="main__panel--img"><img src="https://d13yacurqjgara.cloudfront.net/users/57858/screenshots/3300668/damndaniel_dribbble_1x.jpg" /></div>
+                        <div class="main__panel--img"><img src="https://d13yacurqjgara.cloudfront.net/users/57858/screenshots/3300668/damndaniel_dribbble_1x.jpg" /></div>
+                    </div>
+                    <div id="setting" class="panel-item setting hide">
+                        <div class="panel panel__padding color-setting">
+                            <a class="btn save-btn btn-primary pull-right" data-action="color">保存</a>
+                            <div class="content">
+                                <h2 class="edit-header">更改背景</h2>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="panel panel__padding avatar-setting">
+                            <a class="btn save-btn btn-primary pull-right"  data-action="avatar">保存</a>
+                            <div class="content">
+                                <h2 class="edit-header">更改头像</h2>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="panel panel__padding info-setting">
+                            <a class="btn save-btn btn-primary pull-right" data-action="info">保存</a>
+                            {{> profile-form-partial}}
+                        </div>
+                        <div class="panel panel__padding password-setting">
+                            <a class="btn save-btn btn-primary pull-right" data-action="password">保存</a>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">密码:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control password" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </script>
+    <script id="profile-form-partial" type="text/x-handlebars-template">
+        <div class="content">
+            <h2 class="edit-header">编辑信息</h2>
+            <hr>
+            <div class=" personal-info">
+                <form class="form-horizontal info-form" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">真实姓名：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control display" type="text" name="username" value="{{contact.username}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">邮箱：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control email" type="text" name="email" value="{{contact.email}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">生日：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control birthday" type="text" name="birthday" value="{{contact.birthday}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">手机号码：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control mobile" type="text" name="mobile" value="{{contact.mobile}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">地址：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control address" type="text" name="address" value="{{contact.address}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">工作：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control job" type="text" name="job" value="{{contact.job}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">工作地址：</label>
+                        <div class="col-lg-8">
+                            <input class="form-control jobAddress" type="text" name="jobAddress" value="{{contact.jobAddress}}">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </script>
+</div>

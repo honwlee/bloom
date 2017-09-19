@@ -1,0 +1,184 @@
+.pop-page {
+    position: absolute;
+    left: 60%;
+    top: 0px;
+    bottom: 0;
+    width: 40%;
+    background: #efefef;
+    padding: 50px 0;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include transform(translateX(200%));
+    @include transition-duration(.5s);
+    &.show-pop {
+        left: 0;
+        width: 100%;
+        z-index: 500;
+        background: none;
+        @include transition-duration(.3s);
+        @include transform(none);
+    }
+    .overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 505;
+    }
+    .pop-content-wrap {
+        position: relative;
+        width: 540px;
+        height: 100%;
+        max-height: 540px;
+        margin: 0 auto;
+        padding: 40px;
+        z-index: 506;
+        overflow: hidden;
+        background-color: #fff;
+        .publicYN {
+            padding: 0 30px 10px 20px;
+            margin: 0;
+        }
+        .checkbox {
+            color: #444;
+        }
+        .btn {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .content {
+        max-width: 750px;
+        text-align: left;
+        height: 100%;
+        .post-wrapper {
+            overflow-y: auto;
+            word-break: break-all;
+            .post-title {
+                @include wordEllipsis;
+            }
+        }
+    }
+    .popTitle {
+        position: absolute;
+        top: 10px;
+        font-size: 12px;
+        left: 15px;
+        opacity: .6;
+    }
+    .closePopBtn {
+        display: block;
+        position: absolute;
+        z-index: 507;
+        right: 15px;
+        top: 10px;
+        color: rgba(157, 152, 152, 1);
+        vertical-align: top;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+            color: rgba(102, 95, 95, 0.5);
+        }
+    }
+    .split-cells {
+        display: table-cell;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .split-cell {
+        display: table-cell;
+    }
+    // share tweet  and  save btn inline-block
+    .checkbox-primary {
+        padding-right: 15px;
+    }
+    .checkbox {
+        vertical-align: middle;
+        margin: 0;
+    }
+    .checkbox,
+    .btn {
+        display: inline-block;
+    }
+    .dropdown .dropdown-toggle {
+        background: 0;
+        border: 0;
+    }
+    .controls-container {
+        display: table;
+        width: 100%;
+        .control {
+            display: table-cell;
+        }
+        .left {
+            text-align: left;
+            cursor: pointer;
+        }
+        .right {
+            text-align: right;
+            cursor: pointer;
+        }
+        .setting-form {
+            display: none;
+        }
+        .dropdown-menu li:hover {
+            background: #eee;
+        }
+    }
+}
+
+.pop-wrap {
+    //setting form
+    .setting-form {
+        width: 380px;
+        .form-group {
+            border-top: 1px solid #f2f2f2;
+            padding: 10px;
+            margin-bottom: 0;
+            text-align: left;
+            &:first-child {
+                border-top: 0;
+            }
+            select {
+                background: 0;
+                border: 0;
+                outline-style: none;
+            }
+            input {
+                border: 0;
+                outline: none;
+            }
+            .group-content .checkbox {
+                margin: 0;
+            }
+            .group-label {
+                width: 124px;
+                vertical-align: bottom;
+            }
+            .ver-inherit {
+                vertical-align: inherit;
+            }
+        }
+        .adjacent-content {
+            display: table;
+        }
+        .field.crystal,
+        .prefix {
+            display: table-cell;
+            vertical-align: text-bottom;
+        }
+        .prefix {
+            color: #a2a2a2;
+        }
+        .group-label,
+        .group-content {
+            display: table-cell;
+            display: inline-block;
+        }
+    }
+    //end setting form
+}
