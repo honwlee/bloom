@@ -11,12 +11,12 @@
 * 聚会倒计时与邀请函
 
 ### start
-  $ git clone https://github.com/honwlee/bloom.git
-  $ cd bloom; npm install; npm run dev;
+* $ git clone https://github.com/honwlee/bloom.git
+* $ cd bloom; npm install; npm run dev;
 
 ### build
-  $ cd bloom/build; npm install;
-  $ gulp sass;
+* $ cd bloom/build; npm install;
+* $ gulp sass;
 
 ### 网站
 [http://bloom.bedoer.com](http://bloom.bedoer.com)
