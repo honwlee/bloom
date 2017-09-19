@@ -1,0 +1,43 @@
+<div>
+<script id="contact-main" type="text/x-handlebars-template">
+<div class="jumbotron contact-page">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">联络簿</h3>
+        </div>
+        <div class="panel-body">
+            <table id="contactList" class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th class="sortable both" data-name="username">姓名</th>
+                        <th class="sortable both" data-name="address">地址</th>
+                        <th class="sortable both" data-name="job">工作单位</th>
+                        <th class="sortable both" data-name="jobAddress">工作地点</th>
+                        <th class="sortable both" data-name="mobile">联系电话</th>
+                        <th class="sortable both" data-name="birthday">生日</th>
+                        <th class="sortable both" data-name="status">备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{> contact-list-partial}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="contact-list-partial" type="text/x-handlebars-template">
+    {{#each contacts}}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{address}}</td>
+            <td>{{job}}</td>
+            <td>{{jobAddress}}</td>
+            <td>{{mobile}}</td>
+            <td>{{birthday}}</td>
+            <td>{{status}}</td>
+        </tr>
+    {{/each}}
+</script>
+</div>

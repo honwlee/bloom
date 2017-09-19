@@ -30,12 +30,6 @@ require.config({
         "cropper": "/lib/cropper",
         // "cropper": "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0/cropper.min",
         "text": "https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text",
-        "bootstrap-table": "//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table",
-        "bootstrap-table-zh-CN": "//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min",
-        "tableExport": "http://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport",
-        "bt-export": "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/extensions/export/bootstrap-table-export",
-        "bt-mobile": "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/extensions/mobile/bootstrap-table-mobile",
-        "bt-cookie": "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/extensions/cookie/bootstrap-table-cookie",
         "lodash": "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min"
     },
     shim: {

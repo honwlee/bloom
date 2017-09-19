@@ -23,8 +23,11 @@ class Model {
     static refresh() {
         refresh();
     }
-    static list(name, sortKey = "id") {
-        return jsondb.get(name).sortBy(sortKey).value();
+    static list(name, sortKey = "id", direction = "asc") {
+        let results = jsondb.get(name).sortBy(sortKey).value();
+        if (direction == "desc") results = results.reverse();
+        return results;
+
     }
     static first(name) {
         return jsondb.get(name).first().value();

@@ -2,7 +2,7 @@
 const Contact = require('../models/Contact').Contact;
 module.exports = {
     index: function(req, res) {
-        res.json(Contact.list());
+        res.json(Contact.list(req.query.sort, req.query.direction));
     },
 
     show: function(req, res) {
