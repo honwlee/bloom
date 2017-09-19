@@ -13,8 +13,7 @@ module.exports = function() {
         var build = gulp.src(src)
             .pipe(sourcemaps.init())
             .pipe(sass({
-                includePaths: require('node-bourbon').includePaths
-                // outputStyle: 'compressed'
+                outputStyle: 'compressed'
             }).on('error', sass.logError))
             .pipe(sourcemaps.write());
         dist.forEach(function(dest) {
