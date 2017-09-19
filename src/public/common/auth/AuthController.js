@@ -141,21 +141,26 @@ define([
             });
             $form_signup.find('input[type="submit"]').on('click', function(event) {
                 event.preventDefault();
-                $.post("/registry", {
-                    display: $("#signup-display").val(),
-                    username: $("#signup-username").val(),
-                    email: $("#signup-email").val(),
-                    password: $("#signup-password").val()
-                }, function(data) {
-                    if (data.status) {
-                        login_selected();
-                        $("#signin-username").val($("#signup-username").val());
-                        toastr.options.closeDuration = 3000;
-                        toastr.success(data.msg);
-                    } else {
-                        toastr.error(data.msg);
-                    }
-                });
+                if($("#signup-username").val().length < 6) {
+                    toastr.error("用户名至少要6位");
+                } else {
+                    $.post("/registry", {
+                        display: $("#signup-display").val(),
+                        username: $("#signup-username").val(),
+                        email: $("#signup-email").val(),
+                        password: $("#signup-password").val()
+                    }, function(data) {
+                        if (data.status) {
+                            login_selected();
+                            $("#signin-username").val($("#signup-username").val());
+                            toastr.options.closeDuration = 3000;
+                            toastr.success(data.msg);
+                        } else {
+                            toastr.error(data.msg);
+                        }
+                    });
+
+                }
                 // $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
             });
 

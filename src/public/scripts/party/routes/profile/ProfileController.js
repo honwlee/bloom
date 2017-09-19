@@ -51,13 +51,6 @@ define([
 
                     }
                 }, {
-                    name: 'photos',
-                    title: '精彩图片',
-                    icon: 'fa-photo',
-                    data: {
-
-                    }
-                }, {
                     name: 'posts',
                     title: '精彩博客',
                     icon: 'fa-list',
@@ -84,11 +77,11 @@ define([
             currentPanel = e.content.find(".panel-item.posts").removeClass("hide");
             currentIcon = e.content.find(".icons .posts").addClass("active");
 
-            var ps = new photoSwipe({
-                photoData: []
-            });
-            var psTpl = ps.start();
-            $(psTpl).appendTo(e.content.find(".photoSwipeContainer"));
+            // var ps = new photoSwipe({
+            //     photoData: []
+            // });
+            // var psTpl = ps.start();
+            // $(psTpl).appendTo(e.content.find(".photoSwipeContainer"));
 
             this._initProfileSetting(e.content)
         },

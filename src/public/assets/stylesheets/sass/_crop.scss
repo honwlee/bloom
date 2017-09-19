@@ -23,6 +23,7 @@
         .docs-preview {
             @include default-avatar(img-preview, 128px, 128px);
         }
+
         .crop-upload {
             height: 60px;
             input {
@@ -31,8 +32,6 @@
             }
         }
     }
-
-    @include default-avatar(img-container, 420px, 420px);
 
     .right-side {
         max-width: 900px;

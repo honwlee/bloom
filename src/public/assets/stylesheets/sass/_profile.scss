@@ -139,12 +139,8 @@
     .header-item__img {
         text-align: center;
         margin-top: 1.4em;
-        @include default-avatar(default-avatar); // & img {
-        //     width: 128px;
-        //     height: 128px;
-        //     border-radius: 50%;
-        //     background-color: $white;
-        // }
+        @include default-avatar(default-avatar);
+
         & h2,
         h3 {
             text-align: center;
@@ -153,7 +149,17 @@
         & h3 {
             font-weight: 200;
         }
+        @include respond-to($tablet-portrait) {
+            & h2 {
+                font-size: 24px;
+            }
+
+            & h3 {
+                font-size: 18px;
+            }
+        }
     }
+
 
     .main-profile {
         background-color: $body__bg--color;
@@ -363,4 +369,3 @@
         @include list-content(events)
     }
 }
-

@@ -3,6 +3,9 @@
     <div class="app profile-page">
         <header class="header" role="banner">
             <div class="header-item__img">
+                <div class="default-avatar">
+                    <img src="/assets/images/logo/logo128.jpg" />
+                </div>
                 {{> home-group-info-partial}}
             </div>
         </header>
@@ -223,21 +226,23 @@
             <p class="text-danger">注意：点击初始化密码后，用户的密码会变为224-123456</p>
             <p class="text-danger">初始化密码后，为了安全，请通知该用户用上面的密码登录账户，并立刻更改密码！</p>
             <hr>
+            <div class="container">
             {{#each users}}
-                <div id="user_{{id}}" class="user__content">
+                <div id="user_{{id}}" class="row">
                     {{> home-user-config-item-partial isSuper=@root.user.isSuperAdmin}}
                 </div>
             {{/each}}
+            </div>
         </div>
     </div>
 </script>
 
 <script id="home-user-config-item-partial" type="text/x-handlebars-template">
-    <div class="user__content--info">
+    <div class="col-sm-6 col-md-6">
         <h3 class="event-description">{{username}}</h3>
         <span class="event-hour">{{display}}</span>
     </div>
-    <div class="user__content--date actions">
+    <div class="col-sm-6 col-md-6 actions">
         {{#if isSuper}}
             {{#if isAdmin}}
                 <a class="btn btn-default u-config-item" data-action="setNormal" data-uid="{{id}}">
@@ -264,7 +269,6 @@
     </div>
 </script>
 <script id="home-group-info-partial" type="text/x-handlebars-template">
-    <img src="/assets/images/logo/logo128.jpg" />
     <h2>{{group.fullName}}</h2>
     <h3>成员人数：{{group.memberCount}}</h3>
     <p class="bio">{{group.time}}</p>
