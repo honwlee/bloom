@@ -38,6 +38,7 @@ define([
         rendering: function(e) {
             var self = this,
                 selector = $(langx.trim(homeTpl));
+            handlebars.registerPartial("home-user-info-partial", langx.trim(selector.find("#home-user-info-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-group-info-partial", langx.trim(selector.find("#home-group-info-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-actions-partial", langx.trim(selector.find("#home-actions-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-event-item-partial", langx.trim(selector.find("#home-event-item-partial").html()).replace(/\{\{&gt;/g, "{{>"));
@@ -112,6 +113,17 @@ define([
             this._initProfileSetting(eC, window.currentUser.role > 1);
             this._bindEventsAction(eC);
             this._bindUserConfig(eC);
+            this._bindMember(eC);
+        },
+
+        _bindMember: function(eC) {
+            eC.find(".members-list").delegate("li", "click", function(e) {
+                var id = $(e.currentTarget).data().mid;
+                server().contact("get", "show?id=" + id).then(function(contact) {
+                    var tpl = handlebars.compile("{{> home-user-info-partial}}");
+                    $('#user-info-modal').modal('show').find(".modal-body").html(tpl({contact:contact}));
+                });
+            });
         },
 
         _bindUserConfig: function(eC) {

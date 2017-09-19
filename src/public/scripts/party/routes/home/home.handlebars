@@ -25,7 +25,7 @@
             <section class="members-info">
                 <ul class="members-list">
                     {{#each members}}
-                        <li>
+                        <li data-mid="{{id}}">
                             <div class="member-info">
                                 <div class="member-avatar">
                                     <img src="{{avatar}}" />
@@ -161,6 +161,21 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="user-info-modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        详细信息
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </script>
 
@@ -272,5 +287,15 @@
     <h2>{{group.fullName}}</h2>
     <h3>成员人数：{{group.memberCount}}</h3>
     <p class="bio">{{group.time}}</p>
+</script>
+<script id="home-user-info-partial" type="text/x-handlebars-template">
+     <div class="info">
+        <p><strong>手机号码：</strong> {{contact.mobile}} </p>
+        <p><strong>生日：</strong> {{contact.birthday}} </p>
+        <p><strong>真实姓名：</strong>{{contact.username}}</p>
+        <p><strong>地址：</strong>{{contact.address}}</p>
+        <p><strong>工作：</strong>{{contact.job}}</p>
+        <p><strong>工作地址：</strong>{{contact.jobAddress}}</p>
+    </div>
 </script>
 </div>

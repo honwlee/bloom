@@ -6,7 +6,8 @@ module.exports = {
     },
 
     show: function(req, res) {
-
+        let contact = Contact.findBy({id:req.query.id});
+        res.json(contact);
     },
 
     update: function(req, res) {

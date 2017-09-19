@@ -38,47 +38,6 @@ define([
                 "bt-mobile",
                 "bt-cookie"
             ], function() {
-
-                function showAndSave(data) {
-                    var method, url = "/api/contacts";
-                    if (data) {
-                        method = "PUT";
-                        url = url + "/" + data.id;
-                        ["busNum", "time", "username", "mobile"].forEach(function(key) {
-                            $("#" + key).val(data[key]);
-                        });
-                    } else {
-                        method = "POST";
-                        ["busNum", "time", "username", "mobile"].forEach(function(key) {
-                            $("#" + key).val("");
-                        });
-                    }
-                    $("#formModal").modal('show');
-                    $("#saveContact").off("click");
-                    $("#saveContact").on("click", function() {
-                        $.ajax({
-                            type: method,
-                            url: url,
-                            data: {
-                                busNum: $("#busNum").val(),
-                                time: $("#time").val(),
-                                username: $("#username").val(),
-                                mobile: $("#mobile").val()
-                            }
-                        }).done(function(cbData) {
-                            if (data) {
-                                $('#contactList').bootstrapTable('remove', {
-                                    field: 'id',
-                                    values: [data.id]
-                                });
-                            }
-                            $('#contactList').bootstrapTable('prepend', [cbData]);
-                            // $('#contactList').bootstrapTable('refresh');
-                            $("#formModal").modal('hide');
-                        });
-                    });
-                };
-
                 // table item format
                 function operateFormatter(value, row, index) {
                     return [
@@ -98,50 +57,6 @@ define([
                 function totalTextFormatter(data) {
                     return data;
                 }
-
-                // table event
-                window.operateEvents = {
-                    'click .edit': function(e, value, row, index) {
-                        editContact(row.id);
-                    },
-                    'click .remove': function(e, value, row, index) {
-                        $('#confirm').modal({
-                            backdrop: 'static',
-                            keyboard: false
-                        }).off('click', '#delete');
-                        $('#confirm').modal({
-                            backdrop: 'static',
-                            keyboard: false
-                        }).on('click', '#delete', function(e) {
-                            removeContact(row.id, function() {
-                                $('#contactList').bootstrapTable('remove', {
-                                    field: 'id',
-                                    values: [row.id]
-                                });
-                            });
-                        });
-                    }
-                };
-
-                // edit contact
-                function editContact(id) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/api/contacts/" + id,
-                    }).done(function(data) {
-                        showAndSave(data);
-                    });
-                };
-
-                // remove contact
-                function removeContact(id, callback) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: "/api/contacts/" + id,
-                    }).done(function() {
-                        callback.call();
-                    });
-                };
 
                 function initTable() {
                     // fill list
@@ -188,15 +103,7 @@ define([
                         align: 'center',
                         formatter: totalTextFormatter
                     }];
-                    if ($("#__username__").text()) {
-                        columns.push({
-                            field: 'operate',
-                            title: '操作',
-                            align: 'center',
-                            events: operateEvents,
-                            formatter: operateFormatter
-                        });
-                    }
+
                     var items = [];
                     self.contacts.forEach(function(member) {
                         items.push({
@@ -213,7 +120,7 @@ define([
                         responseHandler: function(res) {
                             return res;
                         },
-                        sortName: "id",
+                        sortName: "username",
                         sortOrder: "desc",
                         columns: columns,
                         data: items

@@ -6,7 +6,6 @@ module.exports = {
     },
 
     show: function(req, res) {
-        console.log(req.query);
         let _event = _Event.findBy({id:req.query.id});
         res.json(_event);
     },
