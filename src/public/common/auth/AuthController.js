@@ -256,7 +256,11 @@ define([
                 if (t.type != "submit") {
                     var result = checkVal(t.name, t.value);
                     if (result && result.error) {
-                        toastr.error(result.msg);
+                        $(t).parent().find(".cd-error-message").text(result.msg).css({
+                            opacity: 1,
+                            visibility: "visible"
+                        });
+                        // toastr.error(result.msg);
                     }
                 }
             });

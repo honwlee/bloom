@@ -294,7 +294,7 @@ xsigin/signup popup
             display: inline-block;
             position: absolute;
             left: -5px;
-            bottom: -35px;
+            top: -35px;
             background: rgba($red, .9);
             padding: .8em;
             z-index: 2;
@@ -305,7 +305,6 @@ xsigin/signup popup
             /* prevent click and touch events */
             pointer-events: none;
 
-            visibility: hidden;
             opacity: 0;
 
             @include transition(opacity .2s 0,
