@@ -181,6 +181,18 @@ xsigin/signup popup
             &:last-child {
                 margin-bottom: 0;
             }
+            &.info {
+                padding: 0;
+                margin: 0;
+                .text-info {
+                    font-size: 12px;
+                }
+            }
+        }
+        @include respond-to($tablet-portrait) {
+            .fieldset {
+                margin: 3px 0;
+            }
         }
 
         label {

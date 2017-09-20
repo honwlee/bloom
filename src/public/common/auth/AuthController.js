@@ -121,9 +121,145 @@ define([
                 $form_forgot_password.addClass('is-selected');
             }
 
-            function checkVal() {
-
+            function checkVal(name, value) {
+                var validates = {
+                    username: {
+                        emptyMsg: "用户名不能为空",
+                        numsMsg: "用户名不能少于6位",
+                        numlMsg: "用户名不能多于14位",
+                        snMsg: "用户名必须以字母开头",
+                        validateMsg: "用户名不能包含字符",
+                        check: function(value) {
+                            var _us = $("#signup-username");
+                            if (value) {
+                                if (value.length < 6) {
+                                    _us.focus();
+                                    return { error: true, msg: this.numsMsg };
+                                }
+                                if (value.length > 14) {
+                                    _us.focus();
+                                    return { error: true, msg: this.numlMsg };
+                                }
+                                if (!value.match(/^[a-zA-Z0-9]+$/)) {
+                                    _us.focus();
+                                    return { error: true, msg: this.validateMsg };
+                                }
+                                if (value.match(/^[^a-zA-Z]/)) {
+                                    _us.focus();
+                                    return { error: true, msg: this.snMsg };
+                                }
+                            } else {
+                                _us.focus();
+                                return { error: true, msg: this.emptyMsg };
+                            }
+                        }
+                    },
+                    display: {
+                        emptyMsg: "真实姓名不能为空",
+                        lsMsg: "真实姓名不能小于2位",
+                        llMsg: "密码不能多于8位",
+                        validateMsg: "当前真实姓名不可用（真实姓名长度为2~8位）",
+                        check: function(value) {
+                            var _ds = $("#signup-display");
+                            if (value) {
+                                if (value.length < 2) {
+                                    _ds.focus();
+                                    return { error: true, msg: this.lsMsg };
+                                }
+                                if (value.length > 4) {
+                                    _ds.focus();
+                                    return { error: true, msg: this.llMsg };
+                                }
+                            } else {
+                                _ds.focus();
+                                return { error: true, msg: this.emptyMsg };
+                            }
+                        }
+                    },
+                    password: {
+                        emptyMsg: "密码不能为空",
+                        numMsg: "必须包含数字",
+                        lwordMsg: "必须包含消息字母",
+                        lsMsg: "密码不能少于8位",
+                        llMsg: "密码不能多于16位",
+                        uwordMsg: "必须包含大写字母",
+                        usernameEqMsg: "不能设置与用户名一样的密码",
+                        validateMsg: "当前密码不可用（密码长度为8-16，必须包含大小写字母和数字）",
+                        check: function(value) {
+                            var re, _ps = $("#signup-password");
+                            if (value) {
+                                if (value == $("#signup-username").val()) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.usernameEqMsg };
+                                }
+                                re = /[0-9]/;
+                                if (!re.test(value)) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.numMsg };
+                                }
+                                re = /[a-z]/;
+                                if (!re.test(value)) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.lwordMsg };
+                                }
+                                re = /[A-Z]/;
+                                if (!re.test(value)) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.uwordMsg };
+                                }
+                                if (value.length < 8) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.lsMsg };
+                                }
+                                if (value.length > 16) {
+                                    _ps.focus();
+                                    return { error: true, msg: this.llMsg };
+                                }
+                            } else {
+                                _ps.focus();
+                                return { error: true, msg: this.emptyMsg };
+                            }
+                        }
+                    },
+                    email: {
+                        emptyMsg: "邮箱不能为空",
+                        validateMsg: "当前邮箱不可用（样板xxx@qq.com）",
+                        check: function(value) {
+                            var _es = $("#signup-email");
+                            if (value) {
+                                if (!value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+                                    _es.focus();
+                                    return { error: true, msg: this.validateMsg };
+                                }
+                            } else {
+                                _es.focus();
+                                return { error: true, msg: this.emptyMsg };
+                            }
+                        }
+                    }
+                };
+                return validates[name].check(value);
             }
+
+            function submitCheck() {
+                var result;
+                $form_signup.find("input").filter(function() {
+                    return this.type != "submit";
+                }).each(function(i, e) {
+                    result = checkVal(e.name, e.value);
+                    if (result && result.error) return false;
+                });
+                return result;
+            }
+            $form_signup.delegate('input', 'blur', function(e) {
+                var t = e.currentTarget;
+                if (t.type != "submit") {
+                    var result = checkVal(t.name, t.value);
+                    if (result && result.error) {
+                        toastr.error(result.msg);
+                    }
+                }
+            });
 
             // //REMOVE THIS - it's just to show error messages
             $form_login.find('input[type="submit"]').on('click', function(event) {
@@ -141,8 +277,9 @@ define([
             });
             $form_signup.find('input[type="submit"]').on('click', function(event) {
                 event.preventDefault();
-                if($("#signup-username").val().length < 6) {
-                    toastr.error("用户名至少要6位");
+                var result = submitCheck();
+                if (result && result.error) {
+                    toastr.error(result.msg);
                 } else {
                     $.post("/registry", {
                         display: $("#signup-display").val(),

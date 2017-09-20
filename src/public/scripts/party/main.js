@@ -25,7 +25,6 @@ require.config({
         "toastr": "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min",
         "bootstrap": "https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min",
         "handlebars": "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.amd.min",
-        "jotted": "https://cdn.jsdelivr.net/jotted/1.5.1/jotted.min",
         "tether": "https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min",
         "cropper": "/lib/cropper",
         // "cropper": "https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.0.0/cropper.min",

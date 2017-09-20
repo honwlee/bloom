@@ -7,6 +7,17 @@
                 <li><a href="#0">登录</a></li>
                 <li><a href="#0">注册</a></li>
             </ul>
+            <div class="modal fade" id="check-modal" tabindex="-1" role="dialog" aria-labelledby="checkModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="cd-login" class="is-selected">
                 <!-- log in form -->
                 <!-- <form class="cd-form" action="/login" method="post"> -->
@@ -35,27 +46,27 @@
                 <form class="cd-form">
                     <p class="fieldset">
                         <label class="image-replace cd-username" for="signup-username">用户名</label>
-                        <input class="full-width has-padding has-border" id="signup-username" name="username" type="text" placeholder="用户名">
-                        <span class="text-warning">用户名：长度为6~14位，支持数字、字母区分大小写</span>
+                        <input class="full-width has-padding has-border" id="signup-username" name="username" type="text" placeholder="用户名（e.g.: xiaoming）">
                         <span class="cd-error-message">出错了！</span>
                     </p>
+                    <p class="fieldset info"><span class="text-warning text-info">长度为6~14位，支持数字、字母区分大小写</span></p>
                     <p class="fieldset">
                         <label class="image-replace cd-display" for="signup-display">真实姓名</label>
-                        <input class="full-width has-padding has-border" id="signup-display" name="display" type="text" placeholder="真实姓名">
+                        <input class="full-width has-padding has-border" id="signup-display" name="display" type="text" placeholder="真实姓名（e.g.: 小明）">
                         <span class="cd-error-message">出错了！</span>
                     </p>
                     <p class="fieldset">
                         <label class="image-replace cd-email" for="signup-email">邮箱</label>
-                        <input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="邮箱">
+                        <input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="邮箱（e.g.: 1234@qq.com）">
                         <span class="cd-error-message">出错了！</span>
                     </p>
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="signup-password">密码</label>
-                        <input class="full-width has-padding has-border" id="signup-password" name="password" type="text" placeholder="密码">
+                        <input class="full-width has-padding has-border" id="signup-password" name="password" type="text" placeholder="密码（e.g.: xiaoming123）">
                         <a href="#0" class="hide-password">隐藏</a>
-                        <span class="text-warning">密码：至少6位字符，支持字母、数字和符号，区分大小写</span>
                         <span class="cd-error-message">出错了！</span>
                     </p>
+                    <p class="fieldset info"><span class="text-warning text-info">密码长度为8-16，必须包含大小写字母和数字</span></p>
                     <p class="fieldset">
                         <input class="full-width has-padding" type="submit" value="注册">
                     </p>

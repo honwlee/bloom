@@ -54,8 +54,8 @@ passport.use('local-signup', new LocalStrategy({ passReqToCallback: true }, //al
                         done(null, result.user);
                     } else {
                         console.log(result.msg);
-                        req.session.error = result.msg; //inform user could not log them in
-                        done(null, null);
+                        // req.session.error = result.msg; //inform user could not log them in
+                        done(null, {});
                     }
                 })
                 .fail(function(err) {

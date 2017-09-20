@@ -16,6 +16,7 @@ exports.localReg = function(args) {
         console.log("USERNAME ALREADY EXISTS:", result.username);
         deferred.resolve({
             status: false,
+            result: {},
             msg: "账号:" + result.username + "已经被注册，请换个账号再试！"
         }); // username exists
     } else {
