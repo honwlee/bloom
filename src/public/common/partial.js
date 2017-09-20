@@ -13,6 +13,7 @@ define([
             partials[name] = true;
         });
     }
+
     return {
         get: function(name) {
             if (!partials[name]) _registryPartial(name);

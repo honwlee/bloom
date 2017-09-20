@@ -135,20 +135,27 @@ define([
             });
         },
 
-        _saveAvatar: function(data) {
-            server().contact("post", "update", {
-                id: this.user.contact.id,
-                avatar: data
-            }).then(function() {
-                $(".header-item__img .default-avatar img").attr("src", data);
+        _saveAvatar: function(avatar) {
+            var params = {
+                username: this.user.display,
+                avatar: avatar
+            };
+            if (this.user.contact) {
+                params.id = this.user.contact.id;
+            }
+            server().contact("post", "update", params).then(function() {
+                $(".header-item__img .default-avatar img").attr("src", avatar);
                 toastr.success("已保存！");
             });
         },
 
         _saveInfo: function() {
             var data = {
-                id: this.user.contact.id
+                username: this.user.display
             };
+            if (this.user.contact) {
+                data.id = this.user.contact.id;
+            }
             $(".info-form input").each(function(index, el) {
                 var s = $(el);
                 data[s.attr("name")] = s.val();

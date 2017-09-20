@@ -23,7 +23,7 @@
                     <div class="panel panel-item panel__padding profile hide">
                         <div class="info">
                             <h2>{{user.username}}</h2>
-                            <p><strong>邮箱：</strong> {{user.email}} </p>
+                            <p><strong>邮箱：</strong> {{contact.email}} </p>
                             <p><strong>手机号码：</strong> {{contact.mobile}} </p>
                             <p><strong>生日：</strong> {{contact.birthday}} </p>
                             <p><strong>真实姓名：</strong>{{contact.username}}</p>
@@ -79,13 +79,15 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">真实姓名：</label>
                         <div class="col-lg-8">
-                            <input class="form-control display" type="text" name="username" value="{{contact.username}}">
+                             <p>{{user.display}}</p>
+                             <p class="text-warning">真实姓名信息，注册时已经填写，不能更改，如需更改请联系管理员</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">邮箱：</label>
                         <div class="col-lg-8">
-                            <input class="form-control email" type="text" name="email" value="{{contact.email}}">
+                            <p>{{user.email}}</p>
+                             <p class="text-warning">邮箱信息，注册时已经填写，不能更改，如需更改请联系管理员</p>
                         </div>
                     </div>
                     <div class="form-group">

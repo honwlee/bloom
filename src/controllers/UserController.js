@@ -5,7 +5,7 @@ const baseUrl = "http://backend.ihudao.dt.hudaokeji.com";
 const Contact = require('../models/Contact').Contact;
 module.exports = {
     index: function(req, res) {
-        res.json(User.list());
+        res.json(User.userList());
     },
 
     show: function(req, res) {

@@ -94,12 +94,12 @@ require(["skylark-all"], function() {
                 require(["bootstrap"], function() {
                     var app = spa(config);
                     return server().user("get", "show").then(function(user) {
+                        window.currentUser = app.currentUser = user;
                         return app.prepare().then(function() {
                             main.style.opacity = 1;
                             router.one("prepared", function(e) {
                                 throb.remove();
                             });
-                            window.currentUser = app.currentUser = user;
                             return app.run();
                         });
                     });

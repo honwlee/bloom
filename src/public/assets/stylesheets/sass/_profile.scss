@@ -81,8 +81,6 @@
     *::before,
     *::after {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
     }
 
     ul {
@@ -100,7 +98,7 @@
     .header {
         padding: 1.8em;
         width: 100%;
-        height: 320px;
+        height: 380px;
         color: $white;
         background: -webkit-linear-gradient(45deg, hsla(193, 98%, 41%, 1) 0%, hsla(193, 98%, 41%, 0) 70%),
         -webkit-linear-gradient(315deg, hsla(155, 100%, 42%, 1) 10%, hsla(155, 100%, 42%, 0) 80%),

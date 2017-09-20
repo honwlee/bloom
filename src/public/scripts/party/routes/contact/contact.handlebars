@@ -3,19 +3,20 @@
 <div class="jumbotron contact-page">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">联络簿</h3>
+            <a class="btn refresh-btn btn-info panel-title"><span>联络簿</span><i class="fa fa-refresh"></i></a>
+            <a class="btn btn-info pull-right" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
         </div>
         <div class="panel-body">
             <table id="contactList" class="table table-responsive table-hover table-striped">
                 <thead>
                     <tr>
                         <th class="sortable both" data-name="username">姓名</th>
-                        <th class="sortable both" data-name="address">地址</th>
+                        <th class="mobile-hide address sortable both" data-name="address">地址</th>
                         <th class="sortable both" data-name="job">工作单位</th>
-                        <th class="sortable both" data-name="jobAddress">工作地点</th>
+                        <th class="mobile-hide jobAddress sortable both" data-name="jobAddress">工作地点</th>
                         <th class="sortable both" data-name="mobile">联系电话</th>
                         <th class="sortable both" data-name="birthday">生日</th>
-                        <th class="sortable both" data-name="status">备注</th>
+                        <th class="mobile-hide status sortable both" data-name="status">备注</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,19 +25,20 @@
             </table>
         </div>
     </div>
+
 </div>
 </script>
 
 <script id="contact-list-partial" type="text/x-handlebars-template">
     {{#each contacts}}
-        <tr>
+        <tr data-cid="{{id}}">
             <td>{{username}}</td>
-            <td>{{address}}</td>
+            <td class="mobile-hide">{{address}}</td>
             <td>{{job}}</td>
-            <td>{{jobAddress}}</td>
+            <td class="mobile-hide">{{jobAddress}}</td>
             <td>{{mobile}}</td>
             <td>{{birthday}}</td>
-            <td>{{status}}</td>
+            <td class="mobile-hide">{{status}}</td>
         </tr>
     {{/each}}
 </script>

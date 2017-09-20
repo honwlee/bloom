@@ -80,6 +80,86 @@
             <span class="email">{{email}}</span>
         </div>
     </script>
+    <script id="contact-user-info-partial" type="text/x-handlebars-template">
+         <div class="info">
+            <p><strong>手机号码：</strong> {{contact.mobile}} </p>
+            <p><strong>生日：</strong> {{contact.birthday}} </p>
+            <p><strong>真实姓名：</strong>{{contact.username}}</p>
+            <p><strong>地址：</strong>{{contact.address}}</p>
+            <p><strong>工作：</strong>{{contact.job}}</p>
+            <p><strong>工作地址：</strong>{{contact.jobAddress}}</p>
+        </div>
+    </script>
+    <script id="contact-info-modal-partial" type="text/x-handlebars-template">
+        <div class="modal fade" id="contact-info-modal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        详细信息
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        {{#if isAdmin}}
+                            <a class="btn btn-primary btn-edit">编辑</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="contact-form-modal-partial" type="text/x-handlebars-template">
+        <div class="modal fade" id="contact-form-modal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        详细信息
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal info-form" role="form">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">生日：</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control birthday" type="text" name="birthday" value="{{contact.birthday}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">手机号码：</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control mobile" type="text" name="mobile" value="{{contact.mobile}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">地址：</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control address" type="text" name="address" value="{{contact.address}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">工作：</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control job" type="text" name="job" value="{{contact.job}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">工作地址：</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control jobAddress" type="text" name="jobAddress" value="{{contact.jobAddress}}">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <a class="btn btn-primary btn-ok">保存</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
 
     <script id="post-item-partial" type="text/x-handlebars-template">
         <div class="thumbnail">

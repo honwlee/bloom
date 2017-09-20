@@ -4,10 +4,11 @@ define([
     "skylark/langx",
     "jquery",
     "handlebars",
+    "common/contactModal",
     "skylark/eventer",
     "common/services/server",
     "text!scripts/routes/contact/contact.handlebars"
-], function(spa, async, langx, $, handlebars, eventer, server, contactTpl) {
+], function(spa, async, langx, $, handlebars, contactModal, eventer, server, contactTpl) {
     return spa.RouteController.inherit({
         klassName: "ContactController",
         contacts: null,
@@ -51,12 +52,25 @@ define([
                     s.removeClass("desc");
                     s.addClass("asc");
                 }
-                server().contact("get", "index?sort=" + name + "&direction=" + direction).then(function(data) {
-                    var _tpl = handlebars.compile("{{> contact-list-partial}}");
-                    $("tbody").empty().html(_tpl({
-                        contacts: data
-                    }));
+                self._updateTbody("index?sort=" + name + "&direction=" + direction);
+            });
+            e.content.find("tbody").delegate("tr", "click", function(e) {
+                var id = $(e.currentTarget).data().cid;
+                server().contact("get", "show?id=" + id).then(function(contact) {
+                    contactModal.show(contact);
                 });
+            });
+            e.content.find(".refresh-btn").on("click", function() {
+                self._updateTbody("index");
+            });
+        },
+
+        _updateTbody: function(action) {
+            server().contact("get", action).then(function(data) {
+                var _tpl = handlebars.compile("{{> contact-list-partial}}");
+                $("tbody").empty().html(_tpl({
+                    contacts: data
+                }));
             });
         },
 

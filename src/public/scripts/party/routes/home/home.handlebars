@@ -22,6 +22,10 @@
             {{/each}}
         </div>
         <div class="panel panel-item panel__padding profile hide">
+            <div class="header-menu">
+                <div class="header-menu__item--left">成员列表</div>
+            </div>
+            <hr>
             <section class="members-info">
                 <ul class="members-list">
                     {{#each members}}
@@ -38,9 +42,17 @@
             </section>
         </div>
         <div class="panel panel-item panel__padding photos hide">
+            <div class="header-menu">
+                <div class="header-menu__item--left">精彩图片</div>
+            </div>
+            <hr>
             <section class="photoSwipeContainer"></section>
         </div>
         <div class="panel panel-item panel__padding logo hide">
+            <div class="header-menu">
+                <div class="header-menu__item--left">班级logo</div>
+            </div>
+            <hr>
             <section class="logo">
                 <img src="/assets/images/logo/logo640.jpg" />
             </section>
@@ -48,11 +60,17 @@
         <div class="panel panel-item panel__padding events events-panel hide">
             <div class="header-menu">
                 <div class="header-menu__item--left">聚会流程(2017-10-02)</div>
-                <a class="btn add-btn btn-primary pull-right hide" data-action="add" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-plus">添加</i></a>
+                <div>
+                    {{#if user.isAdmin}}
+                    <a class="btn refresh-btn btn-primary pull-right" data-action="_refreshEvents" data-parent="events-panel"><i class="fa fa-refresh">刷新</i></a>
+                    <a class="btn add-btn btn-primary pull-right" data-action="add" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-plus">添加</i></a>
+                    {{/if}}
+                </div>
             </div>
-            {{#each events}}
-                {{> home-event-item-partial}}
-            {{/each}}
+            <hr>
+            <div class="list-content">
+                {{> home-event-list-partial }}
+            </div>
         </div>
         <div id="setting" class="panel-item setting hide">
             <div class="panel panel__padding color-setting">
@@ -161,22 +179,13 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="user-info-modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        详细信息
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+</script>
+
+<script id="home-event-list-partial" type="text/x-handlebars-template">
+    {{#each events}}
+        {{> home-event-item-partial isAdmin=../user.isAdmin}}
+    {{/each}}
 </script>
 
 <script id="home-event-item-partial" type="text/x-handlebars-template">
@@ -188,14 +197,16 @@
             <h3 class="event-description">{{title}}</h3>
             <span class="event-hour">{{time}}</span>
         </div>
-        <div class="events__content--date actions hide">
-            <a class="btn btn-default evt-action-item" data-action="edit" data-evt-id="{{id}}" data-toggle="modal" data-target="#edit-modal">
-                <i class="fa fa-edit" title="编辑"></i>
-            </a>
-            <a class="btn btn-default evt-action-item" data-action="delete" data-evt-id="{{id}}" data-toggle="modal" data-target="#confirm-delete">
-                <i class="fa fa-close" title="删除"></i>
-            </a>
-        </div>
+        {{#if isAdmin}}
+            <div class="events__content--date actions">
+                <a class="btn btn-default evt-action-item" data-action="edit" data-evt-id="{{id}}" data-toggle="modal" data-target="#edit-modal">
+                    <i class="fa fa-edit" title="编辑"></i>
+                </a>
+                <a class="btn btn-default evt-action-item" data-action="delete" data-evt-id="{{id}}" data-toggle="modal" data-target="#confirm-delete">
+                    <i class="fa fa-close" title="删除"></i>
+                </a>
+            </div>
+        {{/if}}
     </div>
 </script>
 
@@ -238,18 +249,23 @@
     <div class="panel panel__padding user-setting">
         <div class="content">
             <h1>用户设置</h1>
+            <a class="btn refresh-btn btn-primary pull-right hide" data-action="_refreshUsers" data-parent="user-setting"><i class="fa fa-refresh">刷新</i></a>
             <p class="text-danger">注意：点击初始化密码后，用户的密码会变为224-123456</p>
             <p class="text-danger">初始化密码后，为了安全，请通知该用户用上面的密码登录账户，并立刻更改密码！</p>
             <hr>
-            <div class="container">
-            {{#each users}}
-                <div id="user_{{id}}" class="row">
-                    {{> home-user-config-item-partial isSuper=@root.user.isSuperAdmin}}
-                </div>
-            {{/each}}
+            <div class="container list-content">
+                {{> home-user-list-partial}}
             </div>
         </div>
     </div>
+</script>
+
+<script id="home-user-list-partial" type="text/x-handlebars-template">
+    {{#each users}}
+        <div id="user_{{id}}" class="row">
+            {{> home-user-config-item-partial isSuper=@root.user.isSuperAdmin}}
+        </div>
+    {{/each}}
 </script>
 
 <script id="home-user-config-item-partial" type="text/x-handlebars-template">
@@ -273,11 +289,11 @@
             <i>初始化密码</i>
         </a>
         {{#if isActive}}
-            <a class="btn btn-default u-config-item" data-uid="{{id}}" data-toggle="modal" data-target="#confirm-forbidden">
+            <a class="btn btn-danger u-config-item" data-uid="{{id}}" data-toggle="modal" data-target="#confirm-forbidden">
                 <i>禁止</i>
             </a>
         {{else}}
-            <a class="btn btn-default u-config-item" data-action="setActiviated" data-uid="{{id}}">
+            <a class="btn btn-primary u-config-item" data-action="setActiviated" data-uid="{{id}}">
                 <i>激活</i>
             </a>
         {{/if}}
@@ -287,15 +303,5 @@
     <h2>{{group.fullName}}</h2>
     <h3>成员人数：{{group.memberCount}}</h3>
     <p class="bio">{{group.time}}</p>
-</script>
-<script id="home-user-info-partial" type="text/x-handlebars-template">
-     <div class="info">
-        <p><strong>手机号码：</strong> {{contact.mobile}} </p>
-        <p><strong>生日：</strong> {{contact.birthday}} </p>
-        <p><strong>真实姓名：</strong>{{contact.username}}</p>
-        <p><strong>地址：</strong>{{contact.address}}</p>
-        <p><strong>工作：</strong>{{contact.job}}</p>
-        <p><strong>工作地址：</strong>{{contact.jobAddress}}</p>
-    </div>
 </script>
 </div>

@@ -5,12 +5,13 @@ define([
     "jquery",
     "handlebars",
     "skylark/eventer",
+    "common/contactModal",
     "common/services/server",
     "common/ProfileColorSetting",
     "text!scripts/routes/home/home.handlebars",
     "common/photoSwipe",
     "toastr"
-], function(spa, async, langx, $, handlebars, eventer, server, ProfileColorSetting, homeTpl, photoSwipe, toastr) {
+], function(spa, async, langx, $, handlebars, eventer, contactModal, server, ProfileColorSetting, homeTpl, photoSwipe, toastr) {
     var currentPanel, currentIcon;
     return spa.RouteController.inherit({
         klassName: "HomeController",
@@ -38,7 +39,8 @@ define([
         rendering: function(e) {
             var self = this,
                 selector = $(langx.trim(homeTpl));
-            handlebars.registerPartial("home-user-info-partial", langx.trim(selector.find("#home-user-info-partial").html()).replace(/\{\{&gt;/g, "{{>"));
+            handlebars.registerPartial("home-user-list-partial", langx.trim(selector.find("#home-user-list-partial").html()).replace(/\{\{&gt;/g, "{{>"));
+            handlebars.registerPartial("home-event-list-partial", langx.trim(selector.find("#home-event-list-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-group-info-partial", langx.trim(selector.find("#home-group-info-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-actions-partial", langx.trim(selector.find("#home-actions-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("home-event-item-partial", langx.trim(selector.find("#home-event-item-partial").html()).replace(/\{\{&gt;/g, "{{>"));
@@ -75,7 +77,7 @@ define([
 
                 }
             }];
-            if (window.currentUser.role > 1) {
+            if (window.currentUser.isAdmin) {
                 actions.push({
                     name: 'setting',
                     title: '设置',
@@ -110,18 +112,38 @@ define([
             var eC = e.content,
                 psTpl = ps.start();
             $(psTpl).appendTo(eC.find(".photoSwipeContainer"));
-            this._initProfileSetting(eC, window.currentUser.role > 1);
+            this._initProfileSetting(eC, window.currentUser.isAdmin);
             this._bindEventsAction(eC);
             this._bindUserConfig(eC);
             this._bindMember(eC);
+            if (window.currentUser.isAdmin) {
+                eC.find(".panel").find(".refresh-btn").removeClass("hide");
+                eC.find(".panel").delegate(".refresh-btn", "click", function(e) {
+                    var data = $(e.currentTarget).data();
+                    self[data.action](selector, $("." + data.parent + " .list-content"));
+                });
+            }
+        },
+
+        _refreshEvents: function(selector, container) {
+            server().event("get", "index").then(function(events) {
+                var tpl = handlebars.compile("{{> home-event-list-partial}}");
+                container.empty().html(tpl({ events: events, user: window.currentUser }));
+            });
+        },
+
+        _refreshUsers: function(selector, container) {
+            server().user("get", "index").then(function(users) {
+                var tpl = handlebars.compile("{{> home-user-list-partial}}");
+                container.empty().html(tpl({ users: users }));
+            });
         },
 
         _bindMember: function(eC) {
             eC.find(".members-list").delegate("li", "click", function(e) {
                 var id = $(e.currentTarget).data().mid;
                 server().contact("get", "show?id=" + id).then(function(contact) {
-                    var tpl = handlebars.compile("{{> home-user-info-partial}}");
-                    $('#user-info-modal').modal('show').find(".modal-body").html(tpl({contact:contact}));
+                    contactModal.show(contact);
                 });
             });
         },
@@ -162,7 +184,7 @@ define([
 
         _bindEventsAction: function(eC) {
             var self = this;
-            if (window.currentUser.role < 1) return;
+            if (!window.currentUser.isAdmin) return;
             eC.find(".events__content .actions").removeClass("hide");
             eC.find(".events-panel .add-btn").removeClass("hide");
 
