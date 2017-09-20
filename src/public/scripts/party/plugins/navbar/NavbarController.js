@@ -83,9 +83,11 @@ define([
             });
             _el.html(ul);
             partial.get("gallery-partial");
+            partial.get("del-confirm-modal-partial");
             partial.get("contact-info-modal-partial");
             partial.get("contact-form-modal-partial");
             var div = $("<div>").html(handlebars.compile("{{> gallery-partial}}")({}));
+            var delModal = $("<div>").html(handlebars.compile("{{> del-confirm-modal-partial}}")());
             var infoModal = $("<div>").html(handlebars.compile("{{> contact-info-modal-partial}}")({
                 isAdmin: window.currentUser.isAdmin
             }));
@@ -93,6 +95,7 @@ define([
                 isAdmin: window.currentUser.isAdmin
             }));
             document.body.appendChild(div[0].firstChild);
+            document.body.appendChild(delModal[0].firstChild);
             document.body.appendChild(infoModal[0].firstChild);
             document.body.appendChild(formModal[0].firstChild);
 

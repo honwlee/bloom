@@ -305,6 +305,7 @@ xsigin/signup popup
             /* prevent click and touch events */
             pointer-events: none;
 
+            visibility: hidden;
             opacity: 0;
 
             @include transition(opacity .2s 0,

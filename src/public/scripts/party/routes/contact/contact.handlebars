@@ -4,7 +4,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <a class="btn refresh-btn btn-info panel-title"><span>联络簿</span><i class="fa fa-refresh"></i></a>
-            <a class="btn btn-info pull-right" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
+            <a class="mobile-hide btn btn-info pull-right" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
+            {{#if user.isAdmin}}
+                <a class="btn add-btn btn-primary panel-title"><span>添加</span><i class="fa fa-plus"></i></a>
+            {{/if}}
         </div>
         <div class="panel-body">
             <table id="contactList" class="table table-responsive table-hover table-striped">
@@ -31,15 +34,19 @@
 
 <script id="contact-list-partial" type="text/x-handlebars-template">
     {{#each contacts}}
-        <tr data-cid="{{id}}">
-            <td>{{username}}</td>
-            <td class="mobile-hide">{{address}}</td>
-            <td>{{job}}</td>
-            <td class="mobile-hide">{{jobAddress}}</td>
-            <td>{{mobile}}</td>
-            <td>{{birthday}}</td>
-            <td class="mobile-hide">{{status}}</td>
-        </tr>
+        {{> contact-item-partial}}
     {{/each}}
+</script>
+
+<script id="contact-item-partial" type="text/x-handlebars-template">
+    <tr data-cid="{{id}}">
+        <td class="username">{{username}}</td>
+        <td class="mobile-hide address">{{address}}</td>
+        <td class="job">{{job}}</td>
+        <td class="mobile-hide jobAddress">{{jobAddress}}</td>
+        <td class="mobile">{{mobile}}</td>
+        <td class="birthday">{{birthday}}</td>
+        <td class="mobile-hide status">{{status}}</td>
+    </tr>
 </script>
 </div>

@@ -30,9 +30,11 @@ define([
         rendering: function(e) {
             var self = this,
                 selector = $(langx.trim(contactTpl));
+            handlebars.registerPartial("contact-item-partial", langx.trim(selector.find("#contact-item-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             handlebars.registerPartial("contact-list-partial", langx.trim(selector.find("#contact-list-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             var tpl = handlebars.compile(langx.trim(selector.find("#contact-main").html()).replace("{{&gt;", "{{>"));
             e.content = $(tpl({
+                user: window.currentUser,
                 contacts: this.contacts
             }));
             e.content.find("thead").delegate("th", "click", function(e) {
@@ -56,22 +58,38 @@ define([
             });
             e.content.find("tbody").delegate("tr", "click", function(e) {
                 var id = $(e.currentTarget).data().cid;
-                server().contact("get", "show?id=" + id).then(function(contact) {
-                    contactModal.show(contact);
-                });
+                var main = $(".contact-page")[0],
+                    throb = window.addThrob(main, function() {
+                        server().contact("get", "show?id=" + id).then(function(contact) {
+                            contactModal.show(contact, $(e.currentTarget));
+                            main.style.opacity = 1;
+                            throb.remove();
+                        });
+                    });
             });
             e.content.find(".refresh-btn").on("click", function() {
                 self._updateTbody("index");
             });
+            e.content.find(".add-btn").on("click", function() {
+                contactModal.showAddForm(function(contact) {
+                    var tpl = handlebars.compile("{{> contact-item-partial}}");
+                    $(tpl(contact)).appendTo(e.content.find('tbody'), "first");
+                });
+            });
         },
 
         _updateTbody: function(action) {
-            server().contact("get", action).then(function(data) {
-                var _tpl = handlebars.compile("{{> contact-list-partial}}");
-                $("tbody").empty().html(_tpl({
-                    contacts: data
-                }));
-            });
+            var main = $(".contact-page")[0],
+                throb = window.addThrob(main, function() {
+                    server().contact("get", action).then(function(data) {
+                        var _tpl = handlebars.compile("{{> contact-list-partial}}");
+                        $("tbody").empty().html(_tpl({
+                            contacts: data
+                        }));
+                        main.style.opacity = 1;
+                        throb.remove();
+                    });
+                });
         },
 
         entered: function() {

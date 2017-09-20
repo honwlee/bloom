@@ -10,6 +10,7 @@ const express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     exphbs = require('express-handlebars'),
+    backupDb = require('./schedule.js').backupDb,
     funcs = require('./src/auth/functions.js'),
     jsonServer = require('json-server'),
     app = express(),
@@ -57,6 +58,7 @@ app.use(function(req, res, next) {
 
 routes(app);
 
+backupDb();
 app.listen(port);
 console.log("listening on " + port + "!");
 module.exports = app;

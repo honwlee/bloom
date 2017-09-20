@@ -26,8 +26,9 @@ module.exports = {
         res.json(contact)
     },
 
-    delete: function() {
-
+    delete: function(req, res) {
+        Contact.delete(req.body);
+        res.json({ status: true, msg: "删除成功！" });
     },
 
     import: function(req, res) {

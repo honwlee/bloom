@@ -126,17 +126,27 @@ define([
         },
 
         _refreshEvents: function(selector, container) {
-            server().event("get", "index").then(function(events) {
-                var tpl = handlebars.compile("{{> home-event-list-partial}}");
-                container.empty().html(tpl({ events: events, user: window.currentUser }));
-            });
+            var main = $(".profile-page")[0],
+                throb = window.addThrob(main, function() {
+                    server().event("get", "index").then(function(events) {
+                        var tpl = handlebars.compile("{{> home-event-list-partial}}");
+                        container.empty().html(tpl({ events: events, user: window.currentUser }));
+                        throb.remove();
+                        main.style.opacity = 1;
+                    });
+                });
         },
 
         _refreshUsers: function(selector, container) {
-            server().user("get", "index").then(function(users) {
-                var tpl = handlebars.compile("{{> home-user-list-partial}}");
-                container.empty().html(tpl({ users: users }));
-            });
+            var main = $(".profile-page")[0],
+                throb = window.addThrob(main, function() {
+                    server().user("get", "index").then(function(users) {
+                        var tpl = handlebars.compile("{{> home-user-list-partial}}");
+                        container.empty().html(tpl({ users: users }));
+                        throb.remove();
+                        main.style.opacity = 1;
+                    });
+                });
         },
 
         _bindMember: function(eC) {
