@@ -38,6 +38,10 @@ li {
     .mobile-hide {
         display: none;
     }
+    .modal-dialog {
+        max-height: 500px;
+        overflow-y: auto;
+    }
 }
 
 nav.navbar {
