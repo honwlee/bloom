@@ -3,11 +3,14 @@
 <div class="jumbotron contact-page">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a class="btn refresh-btn btn-info panel-title"><span>联络簿</span><i class="fa fa-refresh"></i></a>
-            <a class="mobile-hide btn btn-info pull-right" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
-            {{#if user.isAdmin}}
-                <a class="btn add-btn btn-primary panel-title"><span>添加</span><i class="fa fa-plus"></i></a>
-            {{/if}}
+            <h4 class="info">联络簿：共{{contacts.length}}人</h4>
+            <div class="action">
+                <a class="btn refresh-btn btn-info"><span>刷新</span><i class="fa fa-refresh"></i></a>
+                <a class="mobile-hide btn btn-info" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
+                {{#if user.isAdmin}}
+                    <a class="btn add-btn btn-primary"><span>添加</span><i class="fa fa-plus"></i></a>
+                {{/if}}
+            </div>
         </div>
         <div class="panel-body">
             <table id="contactList" class="table table-responsive table-hover table-striped">

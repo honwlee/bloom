@@ -20,24 +20,9 @@ define([
         klassName: "HomeController",
         user: null,
         avatarData: null,
-        // preparing: function(e) {
-        //     var deferred = new async.Deferred(),
-        //         self = this;
-        //     var main = $("#main-wrap")[0],
-        //         throb = window.addThrob(main, function() {
-        //             server().user("get", "show").then(function(user) {
-        //                 self.user = user;
-        //                 deferred.resolve();
-        //                 throb.remove();
-        //                 main.style.opacity = 1;
-        //             });
-        //         });
-        //     e.result = deferred.promise;
-        // },
-
         rendering: function(e) {
             var selector = $(langx.trim(profileTpl)),
-                user = this.user = spa().currentUser;
+                user = this.user = window.currentUser;
             handlebars.registerPartial("profile-form-partial", langx.trim(selector.find("#profile-form-partial").html()).replace(/\{\{&gt;/g, "{{>"));
             var tpl = handlebars.compile(langx.trim(selector.find("#profile-main").html()).replace("{{&gt;", "{{>"));
             e.content = $(tpl({
@@ -101,31 +86,37 @@ define([
             crop.start();
 
             _setting.delegate(".save-btn", "click", function(e) {
+                var promise = new async.Deferred.when(0);
+                var $this = $(this);
+                $this.button('loading');
                 switch ($(e.target).data().action) {
                     case "color":
-                        self._saveColor(pcs.getColor());
+                        promise = self._saveColor(pcs.getColor());
                         break;
                     case "info":
-                        self._saveInfo();
+                        promise = self._saveInfo();
                         break;
                     case "avatar":
                         var img = _setting.find(".js-image-preview img");
                         if (img && img.attr("src")) {
-                            self._saveAvatar(img.attr("src"));
+                            promise = self._saveAvatar(img.attr("src"));
                         } else {
                             toastr.error("请选择图片，并进行裁剪");
                         }
                         break;
                     case "password":
-                        self._updatePassword(e);
+                        promise = self._updatePassword(e);
                         break;
                 }
+                promise.then(function() {
+                    $this.button('reset');
+                });
             });
         },
 
         _updatePassword: function(e) {
             var passwordDom = $(e.target).parent().find("input.password");
-            server().user("post", "update", {
+            return server().connect("user", "post", "update", {
                 id: this.user.id,
                 _action: "password",
                 password: passwordDom.val()
@@ -140,11 +131,13 @@ define([
                 username: this.user.display,
                 avatar: avatar
             };
-            if (this.user.contact) {
-                params.id = this.user.contact.id;
+            if (this.user) {
+                params.id = this.user.id;
             }
-            server().contact("post", "update", params).then(function() {
+            return server().connect("user", "post", "update", params).then(function() {
+                var navCtrl = spa().getPlugin("navbar").controller;
                 $(".header-item__img .default-avatar img").attr("src", avatar);
+                navCtrl.updateName('profile', avatar, true);
                 toastr.success("已保存！");
             });
         },
@@ -160,13 +153,13 @@ define([
                 var s = $(el);
                 data[s.attr("name")] = s.val();
             });
-            server().contact("post", "update", data).then(function() {
+            return server().connect("contact", "post", "update", data).then(function() {
                 toastr.success("已保存！");
             });
         },
 
         _saveColor: function(color) {
-            server().user("post", "update", {
+            return server().connect("user", "post", "update", {
                 username: this.user.username,
                 color: color
             }).then(function() {

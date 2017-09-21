@@ -89,10 +89,7 @@
 
     a {
         text-decoration: none;
-        color: $blue;
-        &:hover {
-            color: $light-gray;
-        }
+        margin: 3px;
     }
 
     .header {
@@ -359,6 +356,11 @@
     }
     .user-setting {
         @include list-content(user, 0%, 100%, 40%)
+        .list-content .actions {
+            margin-top: 24px;
+            text-align: right;
+            padding-right: 30px;
+        }
     }
 
     .events {

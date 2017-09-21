@@ -28,6 +28,17 @@ define([], function() {
                     type: "scripts/routes/home/HomeController"
                 }
             },
+            "user": {
+                pathto: "/u/:username",
+                data: {
+                    name: 'user',
+                    navName: "User"
+                },
+                lazy: true,
+                controller: {
+                    type: "scripts/routes/user/UserController"
+                }
+            },
             "splendid": {
                 pathto: "/splendid",
                 data: {

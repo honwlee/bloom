@@ -24,6 +24,11 @@ module.exports = function(app, ensureAuthenticated) {
     app.get('/api/contacts/import', ensureAuthenticated, function(req, res) {
         ctrls.contacts.import(req, res);
     });
+
+    app.get('/api/users/public/show', function(req, res) {
+        ctrls.users.publicShow(req, res);
+    });
+
     app.get('/api/contacts/download', ensureAuthenticated, function(req, res) {
         ctrls.contacts.download(req, res);
     });

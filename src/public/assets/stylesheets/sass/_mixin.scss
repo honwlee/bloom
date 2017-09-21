@@ -122,6 +122,68 @@
     }
 }
 
+@mixin different-color($_eColor:#fff, $_oColor: #e4e4e4, $_hColor : #48DFE4, $_htColor: #fff) {
+    .different-color {
+        /* For small screen */
+        &> :nth-child(even) {
+            background-color: $_eColor;
+            &:hover {
+                background: $_hColor;
+                color: $_htColor;
+            }
+        }
+        &> :nth-child(odd) {
+            background-color: $_oColor;
+            &:hover {
+                background: $_hColor;
+                color: $_htColor;
+            }
+        }
+
+        /* For medium screen */
+        @media (min-width: 768px) {
+            &> :nth-child(4n),
+            &> :nth-child(4n-1) {
+                background: $_eColor;
+                &:hover {
+                    background: $_hColor;
+                    color: $_htColor;
+                }
+            }
+            &> :nth-child(4n-2),
+            &> :nth-child(4n-3) {
+                background: $_oColor;
+                &:hover {
+                    background: $_hColor;
+                    color: $_htColor;
+                }
+            }
+        }
+
+        /* For large screen */
+        @media (min-width: 992px) {
+            &> :nth-child(6n),
+            &> :nth-child(6n-1),
+            &> :nth-child(6n-2) {
+                background: $_eColor;
+                &:hover {
+                    background: $_hColor;
+                    color: $_htColor;
+                }
+            }
+            &> :nth-child(6n-3),
+            &> :nth-child(6n-4),
+            &> :nth-child(6n-5) {
+                background: $_oColor;
+                &:hover {
+                    background: $_hColor;
+                    color: $_htColor;
+                }
+            }
+        }
+    }
+}
+
 @mixin default-avatar($name, $w: 115px, $h:115px) {
     .#{$name} {
         position: relative;
@@ -163,6 +225,8 @@
         }
 
         img {
+            width: $w;
+            height: $h;
             position: relative;
             -webkit-border-radius: 50%;
             border-radius: 50%;

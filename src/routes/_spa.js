@@ -12,13 +12,20 @@ module.exports = function(app, ensureAuthenticated) {
         });
     });
 
-    ["", "splendid", "contact", "profile"].forEach(function(name) {
+    ["", "splendid", "contact", "profile", "u/:username"].forEach(function(name) {
         app.get("/party/" + name, ensureAuthenticated, function(req, res) {
             res.render('party', {
                 token: req.user.token,
                 user: req.user,
                 layout: 'party'
             });
+        });
+    });
+
+    app.get("/public/users/:username", function(req, res) {
+        res.render('party', {
+            user: req.user,
+            layout: 'party'
         });
     });
 

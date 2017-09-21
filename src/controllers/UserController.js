@@ -9,10 +9,32 @@ module.exports = {
     },
 
     show: function(req, res) {
-        var contact = Contact.findBy({ username: req.user.display });
-        var user = req.user;
-        req.user.contact = contact;
-        res.json(user);
+        if (req.query.uname) {
+            var user = User.findBy({ username: req.query.uname });
+            if (user) {
+                var contact = Contact.findBy({ username: user.display });
+                user.contact = contact;
+                res.json({ status: true, user: user });
+            } else {
+                res.json({ status: false });
+            }
+        } else {
+            var contact = Contact.findBy({ username: req.user.display });
+            var user = req.user;
+            user.contact = contact;
+            res.json(user);
+        }
+    },
+
+    publicShow: function(req, res) {
+        var user = User.findBy({ username: req.query.uname });
+        if (user) {
+            var contact = Contact.findBy({ username: user.display });
+            user.contact = contact;
+            res.json({ status: true, user: user });
+        } else {
+            res.json({ status: false });
+        }
     },
 
     update: function(req, res) {
@@ -23,7 +45,7 @@ module.exports = {
         delete req.body._action;
         if (action == "password") {
             let password = req.body.password || "224-123456";
-            userOpts.passwordInited = true;
+            userOpts.passwordInited = password == "224-123456";
             userOpts.password = password;
             let user = User.update(userOpts);
             request.post({

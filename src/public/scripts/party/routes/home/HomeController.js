@@ -4,14 +4,14 @@ define([
     "skylark/langx",
     "jquery",
     "handlebars",
+    "skylark/router",
     "skylark/eventer",
-    "common/contactModal",
     "common/services/server",
     "common/ProfileColorSetting",
     "text!scripts/routes/home/home.handlebars",
     "common/photoSwipe",
     "toastr"
-], function(spa, async, langx, $, handlebars, eventer, contactModal, server, ProfileColorSetting, homeTpl, photoSwipe, toastr) {
+], function(spa, async, langx, $, handlebars, router, eventer, server, ProfileColorSetting, homeTpl, photoSwipe, toastr) {
     var currentPanel, currentIcon;
     return spa.RouteController.inherit({
         klassName: "HomeController",
@@ -24,7 +24,6 @@ define([
             var main = $("#main-wrap")[0],
                 throb = window.addThrob(main, function() {
                     server().startServer().then(function(data) {
-                        self.contacts = data.contacts;
                         self.events = data.events;
                         self.group = data.group;
                         self.users = data.users;
@@ -88,7 +87,6 @@ define([
                 })
             }
             e.content = $(tpl({
-                members: this.contacts,
                 group: this.group,
                 actions: actions,
                 users: this.users,
@@ -128,7 +126,7 @@ define([
         _refreshEvents: function(selector, container) {
             var main = $(".profile-page")[0],
                 throb = window.addThrob(main, function() {
-                    server().event("get", "index").then(function(events) {
+                    server().connect("event", "get", "index").then(function(events) {
                         var tpl = handlebars.compile("{{> home-event-list-partial}}");
                         container.empty().html(tpl({ events: events, user: window.currentUser }));
                         throb.remove();
@@ -140,7 +138,7 @@ define([
         _refreshUsers: function(selector, container) {
             var main = $(".profile-page")[0],
                 throb = window.addThrob(main, function() {
-                    server().user("get", "index").then(function(users) {
+                    server().connect("user", "get", "index").then(function(users) {
                         var tpl = handlebars.compile("{{> home-user-list-partial}}");
                         container.empty().html(tpl({ users: users }));
                         throb.remove();
@@ -151,10 +149,8 @@ define([
 
         _bindMember: function(eC) {
             eC.find(".members-list").delegate("li", "click", function(e) {
-                var id = $(e.currentTarget).data().mid;
-                server().contact("get", "show?id=" + id).then(function(contact) {
-                    contactModal.show(contact);
-                });
+                var name = $(e.currentTarget).data().uname;
+                router.go("/u/" + name, true);
             });
         },
 
@@ -164,6 +160,8 @@ define([
                 var data = $(e.currentTarget).data();
                 if (data.action) self[data.action](data.uid);
             });
+
+            // 禁止登录
             eC.find('#confirm-forbidden').on('click', '.btn-ok', function(e) {
                 var $modalDiv = $(e.delegateTarget),
                     target = $(this);
@@ -176,7 +174,10 @@ define([
             eC.find('#confirm-forbidden').on('show.bs.modal', function(e) {
                 var data = $(e.relatedTarget).data();
                 eC.find('.btn-ok', this).data('uid', data.uid);
+                eC.find('.uname', this).html(data.uname);
             });
+
+            // 重置密码
             eC.find('#confirm-initPassword').on('click', '.btn-ok', function(e) {
                 var $modalDiv = $(e.delegateTarget),
                     target = $(this);
@@ -189,6 +190,7 @@ define([
             eC.find('#confirm-initPassword').on('show.bs.modal', function(e) {
                 var data = $(e.relatedTarget).data();
                 eC.find('.btn-ok', this).data('uid', data.uid);
+                eC.find('.uname', this).html(data.uname);
             });
         },
 
@@ -220,7 +222,7 @@ define([
             eC.find('#edit-modal').on('show.bs.modal', function(e) {
                 var tpl, data = $(e.relatedTarget).data();
                 if (id = data.evtId) {
-                    server().event("get", "show?id=" + id).then(function(data) {
+                    server().connect("event", "get", "show?id=" + id).then(function(data) {
                         tpl = handlebars.compile("{{> home-event-form-partial}}");
                         data.header = "编辑";
                         eC.find("#edit-modal .modal-body").html(tpl(data));
@@ -240,7 +242,7 @@ define([
                 var id = target.data('evtId');
 
                 $modalDiv.addClass('loading');
-                server().event("post", "delete", { id: id }).then(function() {
+                server().connect("event", "post", "delete", { id: id }).then(function() {
                     $modalDiv.modal('hide').removeClass('loading');
                     toastr.success("已删除！");
                     $("#event_" + id).remove();
@@ -253,7 +255,7 @@ define([
         },
 
         setPassword: function(id) {
-            return server().user("post", "update", {
+            return server().connect("user", "post", "update", {
                 id: id,
                 _action: "password"
             }).then(function(user) {
@@ -262,7 +264,7 @@ define([
         },
 
         setActiviated: function(id) {
-            server().user("post", "update", {
+            server().connect("user", "post", "update", {
                 id: id,
                 _action: "active"
             }).then(function(user) {
@@ -273,7 +275,7 @@ define([
         },
 
         setUnActiviated: function(id) {
-            return server().user("post", "update", {
+            return server().connect("user", "post", "update", {
                 id: id,
                 _action: "unActive"
             }).then(function(user) {
@@ -284,7 +286,7 @@ define([
         },
 
         setNormal: function(id) {
-            server().user("post", "update", {
+            server().connect("user", "post", "update", {
                 id: id,
                 _action: "role-normal"
             }).then(function(user) {
@@ -295,7 +297,7 @@ define([
         },
 
         setAdmin: function(id) {
-            server().user("post", "update", {
+            server().connect("user", "post", "update", {
                 id: id,
                 _action: "role-admin"
             }).then(function(user) {
@@ -318,14 +320,20 @@ define([
             $(pcs.start()).appendTo(_setting.find(".color-setting .content"));
 
             if (admin) _setting.delegate(".save-btn", "click", function(e) {
+                var promise = new async.Deferred.when(0);
+                var $this = $(this);
+                $this.button('loading');
                 switch ($(e.target).data().action) {
                     case "color":
-                        self._saveColor(pcs.getColor());
+                        promise = self._saveColor(pcs.getColor());
                         break;
                     case "info":
-                        self._saveInfo();
+                        promise = self._saveInfo();
                         break;
                 }
+                promise.then(function() {
+                    $this.button('reset');
+                });
             });
         },
 
@@ -342,7 +350,7 @@ define([
                 data[s.attr("name")] = s.val();
             });
             data.description = $(".event-form textarea").text();
-            return server().event("post", method, data);
+            return server().connect("event", "post", method, data);
         },
 
         _saveInfo: function() {
@@ -354,15 +362,15 @@ define([
                 data[s.attr("name")] = s.val();
             });
             data.description = $(".profile-form textarea").text();
-            server().group("post", "update", data).then(function(group) {
+            return server().connect("group", "post", "update", data).then(function(group) {
                 tpl = handlebars.compile("{{> home-group-info-partial}}");
-                $(".header-item__img").empty().html(tpl({ group: group }));
+                $(".header-item__img .info").empty().html(tpl({ group: group }));
                 toastr.success("已保存！");
             });
         },
 
         _saveColor: function(color) {
-            server().group("post", "update", {
+            return server().connect("group", "post", "update", {
                 id: this.group.id,
                 color: color
             }).then(function() {

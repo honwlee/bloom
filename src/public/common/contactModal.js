@@ -13,9 +13,9 @@ define([
             var infoTpl = handlebars.compile("{{> contact-info-partial}}"),
                 infoModel = $('#contact-info-modal'),
                 formModel = $('#contact-form-modal');
+
             infoModel.modal('show').find(".modal-body").html(infoTpl({ contact: contact }));
             infoModel.find(".del-btn").off("click");
-
             infoModel.find(".del-btn").on("click", function() {
                 infoModel.modal('hide');
                 var delModal = $("#_common-confirm-delete");
@@ -24,7 +24,7 @@ define([
                 delModal.find(".btn-cancel").on("click", function() {
                     delModal.modal('hide');
                 });
-                delModal.off("click");
+                delModal.find(".btn-ok").off("click");
                 delModal.on('click', '.btn-ok', function(e) {
                     server().contact("post", "delete", { id: contact.id }).then(function() {
                         toastr.success("已删除！");
@@ -39,6 +39,7 @@ define([
                 infoModel.modal('hide');
                 var formTpl = handlebars.compile("{{> contact-form-partial}}");
                 formModel.modal('show').find(".modal-body").html(formTpl({ contact: contact }));
+                formModel.find(".btn-ok").off("click");
                 formModel.find(".btn-ok").on("click", function() {
                     var data = {
                         username: contact.username,

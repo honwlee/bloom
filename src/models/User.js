@@ -22,8 +22,6 @@ exports.User = class User extends Model {
         return Model.create("users", args);
     }
     static update(args) {
-        console.log(args.password);
-        console.log("@@@@@@@@")
         if (args.password) {
             args.password = bcrypt.hashSync(args.password, 8);
         }

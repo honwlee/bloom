@@ -38,9 +38,23 @@ define([
 
         startServer: function() {
             var deferred = new async.Deferred();
-            $.get("/api/start", function(data){
+            $.get("/api/start", function(data) {
                 deferred.resolve(data);
             });
+            return deferred.promise;
+        },
+
+        connect: function(method, httpMethod, action, args) {
+            var main = $(".page-container")[0],
+                self = this,
+                deferred = new async.Deferred(),
+                throb = window.addThrob(main, function() {
+                    self[method](httpMethod, action, args).then(function(data) {
+                        deferred.resolve(data);
+                        throb.remove();
+                        main.style.opacity = 1;
+                    });
+                });
             return deferred.promise;
         },
 
@@ -50,6 +64,7 @@ define([
             // } else {
             var deferred = new async.Deferred(),
                 self = this;
+
             if (args) {
                 $[method]("/api/users/" + action, args, function(data) {
                     self.memory.user[action] = data;
@@ -59,6 +74,7 @@ define([
                 $[method]("/api/users/" + action, function(data) {
                     self.memory.user[action] = data;
                     deferred.resolve(data);
+
                 });
             }
             return deferred.promise;
@@ -71,6 +87,7 @@ define([
             // } else {
             var deferred = new async.Deferred(),
                 self = this;
+
             if (args) {
                 $[method]("/api/contacts/" + action, args, function(data) {
                     self.memory.contact[action] = data;

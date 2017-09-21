@@ -34,6 +34,8 @@ li {
     flex-direction: column;
 }
 
+@include different-color();
+
 @include respond-to($phone) {
     .mobile-hide {
         display: none !important;
@@ -56,6 +58,11 @@ nav.navbar {
     }
     .navbar-toggle .icon-bar {
         background-color: #337ab7;
+    }
+    .active {
+        a {
+            background-color: #eee;
+        }
     }
     @include respond-to($except-tablet) {
         .navbar-nav {
@@ -84,6 +91,16 @@ nav.navbar {
     }
     .logo-nav {
         padding: 10px;
+    }
+    .profile-nav {
+        .nav-item {
+            padding: 9px;
+            .user-avatar {
+                margin: 0;
+                display: block;
+            }
+        }
+        @include default-avatar(user-avatar, 32px, 32px);
     }
     img.logo {
         position: relative;
