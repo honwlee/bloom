@@ -32,6 +32,11 @@ module.exports = function(app, ensureAuthenticated) {
     app.get('/api/contacts/download', ensureAuthenticated, function(req, res) {
         ctrls.contacts.download(req, res);
     });
+
+    app.get('/api/contacts/download-size', ensureAuthenticated, function(req, res) {
+        ctrls.contacts.downloadSize(req, res);
+    });
+
     app.get('/api/events/import', ensureAuthenticated, function(req, res) {
         ctrls.events.import(req, res);
     });

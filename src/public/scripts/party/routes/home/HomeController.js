@@ -149,8 +149,8 @@ define([
 
         _bindMember: function(eC) {
             eC.find(".members-list").delegate("li", "click", function(e) {
-                var name = $(e.currentTarget).data().uname;
-                router.go("/u/" + name, true);
+                // var name = $(e.currentTarget).data().uname;
+                // router.go("/u/" + name, true);
             });
         },
 

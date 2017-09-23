@@ -30,6 +30,7 @@
                             <p><strong>地址：</strong>{{contact.address}}</p>
                             <p><strong>工作：</strong>{{contact.job}}</p>
                             <p><strong>工作地址：</strong>{{contact.jobAddress}}</p>
+                            <p><strong>衣服尺寸：</strong>{{contact.clothSize}}</p>
                         </div>
                     </div>
                     <div class="main__panel panel panel-item posts hide">
@@ -68,6 +69,21 @@
                     </div>
                 </div>
             </main>
+            <div class="modal fade" id="clothSize-info-modal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            衣服尺寸参照表格：
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="/assets/images/cloth-size.png" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </script>
     <script id="profile-form-partial" type="text/x-handlebars-template">
@@ -118,6 +134,16 @@
                         <label class="col-lg-3 control-label">工作地址：</label>
                         <div class="col-lg-8">
                             <input class="form-control jobAddress" type="text" name="jobAddress" value="{{contact.jobAddress}}">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="col-lg-3 control-label">衣服尺寸：
+                            <a class="btn btn-default" data-toggle="modal" data-target="#clothSize-info-modal">
+                                参考列表
+                            </a>
+                        </label>
+                        <div class="col-lg-8">
+                            <input class="form-control clothSize" type="text" name="clothSize" value="{{contact.clothSize}}" placeholder="XL">
                         </div>
                     </div>
                 </form>

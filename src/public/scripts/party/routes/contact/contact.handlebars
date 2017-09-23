@@ -8,6 +8,7 @@
                 <a class="btn refresh-btn btn-info"><span>刷新</span><i class="fa fa-refresh"></i></a>
                 <a class="mobile-hide btn btn-info" href="/api/contacts/download"><span>下载</span><i class="fa fa-download"></i></a>
                 {{#if user.isAdmin}}
+                    <a class="mobile-hide btn btn-info" href="/api/contacts/download-size"><span>下载衣服尺寸表格</span><i class="fa fa-download"></i></a>
                     <a class="btn add-btn btn-primary"><span>添加</span><i class="fa fa-plus"></i></a>
                 {{/if}}
             </div>
@@ -22,6 +23,7 @@
                         <th class="mobile-hide jobAddress sortable both" data-name="jobAddress">工作地点</th>
                         <th class="sortable both" data-name="mobile">联系电话</th>
                         <th class="sortable both" data-name="birthday">生日</th>
+                        <th class="closeSize sortable both" data-name="closeSize">衣服尺寸</th>
                         <th class="mobile-hide status sortable both" data-name="status">备注</th>
                     </tr>
                 </thead>

@@ -35,6 +35,23 @@ module.exports = {
         res.json(Contact.importData());
     },
 
+    downloadSize: function(req, res) {
+        let xls = json2xls(Contact.list().filter(function(contact){
+            return contact.clothSize;
+        }).map(function(contact){
+            return {
+                "姓名": contact.username,
+                "衣服尺寸": contact.clothSize
+            };
+        }));
+        res.writeHead(200, {
+            'Content-Type': 'application/vnd.openxmlformats',
+            'Content-disposition': 'attachment;filename=cloth-size.xlsx',
+            'Content-Length': xls.length
+        });
+        res.end(new Buffer(xls, 'binary'));
+    },
+
     download: function(req, res) {
         let xls = json2xls(Contact.list().map(function(contact){
             return {
