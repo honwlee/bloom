@@ -22,8 +22,8 @@
                         <th class="sortable both" data-name="job">工作单位</th>
                         <th class="mobile-hide jobAddress sortable both" data-name="jobAddress">工作地点</th>
                         <th class="sortable both" data-name="mobile">联系电话</th>
-                        <th class="sortable both" data-name="birthday">生日</th>
-                        <th class="closeSize sortable both" data-name="closeSize">衣服尺寸</th>
+                        <th class="mobile-hide sortable both" data-name="birthday">生日</th>
+                        <th class="clothSize sortable both" data-name="clothSize">衣服尺寸</th>
                         <th class="mobile-hide status sortable both" data-name="status">备注</th>
                     </tr>
                 </thead>
@@ -50,7 +50,8 @@
         <td class="job">{{job}}</td>
         <td class="mobile-hide jobAddress">{{jobAddress}}</td>
         <td class="mobile">{{mobile}}</td>
-        <td class="birthday">{{birthday}}</td>
+        <td class="mobile-hide birthday">{{birthday}}</td>
+        <td class="clothSize">{{clothSize}}</td>
         <td class="mobile-hide status">{{status}}</td>
     </tr>
 </script>

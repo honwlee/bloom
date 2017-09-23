@@ -69,7 +69,7 @@ define([
 
                 }
             }, {
-                name: 'logo',
+                name: 'logo-panel',
                 title: '班级logo',
                 icon: 'fa-star-o',
                 data: {

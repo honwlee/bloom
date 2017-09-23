@@ -334,13 +334,15 @@
         border-radius: 0.4em;
         @include box-shadow;
 
-        .logo {
+        &.logo-panel {
             text-align: center;
         }
         @include respond-to($phone) {
-            .logo img {
-                width: 100%;
-                height: auto;
+            &.logo-panel {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
             }
             &.avatar-setting {
                 display: none;
@@ -355,8 +357,7 @@
         padding: 1.8em;
     }
     .user-setting {
-        @include list-content(user, 0%, 100%, 40%)
-        .list-content .actions {
+        @include list-content(user, 0%, 100%, 40%) .list-content .actions {
             margin-top: 24px;
             text-align: right;
             padding-right: 30px;
