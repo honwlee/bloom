@@ -61,6 +61,28 @@ define([], function() {
                     type: "scripts/routes/contact/ContactController"
                 }
             },
+            "pictures": {
+                pathto: "/pictures",
+                data: {
+                    name: 'pictures',
+                    navName: "聚会相片"
+                },
+                lazy: true,
+                controller: {
+                    type: "scripts/routes/pictures/PicturesController"
+                }
+            },
+            "download": {
+                pathto: "/download",
+                data: {
+                    name: 'download',
+                    navName: "下载"
+                },
+                lazy: true,
+                controller: {
+                    type: "scripts/routes/download/DownloadController"
+                }
+            },
             "profile": {
                 pathto: "/profile",
                 data: {

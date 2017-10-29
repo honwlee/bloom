@@ -798,7 +798,7 @@ define("skylark/langx", ["skylark/skylark"], function(skylark) {
 
     var _uid = 1;
     function uid(obj) {
-        return obj._uid || obj.id || (obj._uid = _uid++);
+        return obj._uid || (obj._uid = _uid++);
     }
 
     function uniq(array) {
@@ -5853,10 +5853,10 @@ define("skylark/spa", [
             var curCtx = router.current(),
                 prevCtx = router.previous();
             this._$rvc.html(curCtx.route.render(curCtx));
-            //eventer.trigger(curCtx.route, "rendered", {
-            //    route: curCtx.route,
-            //    node: this._$rvc.domNode
-            //});
+            eventer.trigger(curCtx.route, "rendered", {
+               route: curCtx.route,
+               node: this._$rvc.domNode
+            });
         }
     });
 

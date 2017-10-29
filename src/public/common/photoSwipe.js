@@ -11,7 +11,7 @@ define([
         klassName: "HomeController",
         photoData: null,
         init: function(config) {
-            this.photoData = config.photoData;
+            this.photoData = config.photoData || JSON.parse(photosData);
             // partial.get("gallery-partial");
             partial.get("photoSwipe-item-partial");
             partial.get("photoSwipe-partial");
@@ -30,7 +30,7 @@ define([
         _formatPhotoData: function(data) {
             var items = [];
 
-            JSON.parse(photosData).forEach(function(photo, index) {
+            data.forEach(function(photo, index) {
                 // items.push({
                 //     big: photo.image.url,
                 //     normal: photo.image.wallpaper,
@@ -146,6 +146,7 @@ define([
                 items = parseThumbnailElements(galleryElement);
                 // define options (if needed)
                 options = {
+                    history: false,
                     galleryUID: galleryElement.getAttribute('data-pswp-uid'),
                     getThumbBoundsFn: function(index) {
                         // See Options->getThumbBoundsFn section of docs for more info
@@ -184,6 +185,7 @@ define([
                 if (isNaN(options.index)) {
                     return;
                 }
+                options.shareEl = false;
                 var radios = document.getElementsByName('gallery-style');
                 for (var i = 0, length = radios.length; i < length; i++) {
                     if (radios[i].checked) {

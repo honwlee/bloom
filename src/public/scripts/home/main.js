@@ -12,8 +12,10 @@ require.config({
     paths: {
         "skylark-all": "/lib/skylark-all",
         "jquery": "https://cdn.bootcss.com/jquery/2.2.0/jquery.min",
-        // "jquery": "/lib/skylark-jquery-all.min",
+        "skylark-jquery": "/lib/skylark-jquery-all.min",
         "noext": 'https://cdnjs.cloudflare.com/ajax/libs/requirejs-plugins/1.0.3/noext.min',
+        "photoswipe": "https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min",
+        "photoswipeUi": "https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min",
         "countdown": "/lib/countdown",
         "modernizr": "https://cdn.bootcss.com/modernizr/2.8.3/modernizr",
         "ityped": "https://unpkg.com/ityped@0.0.5?noext",

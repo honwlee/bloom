@@ -12,22 +12,6 @@ define([
 ], function(spa, async, langx, $, eventer, server, homeTpl, photoSwipe, ityped, countdown) {
     return spa.RouteController.inherit({
         klassName: "HomeController",
-        data: null,
-        preparing: function(e) {
-            var deferred = new async.Deferred(),
-                self = this;
-            var main = $("#main-wrap")[0],
-                throb = window.addThrob(main, function() {
-                    server().start().then(function(data) {
-                        self.data = data;
-                        deferred.resolve();
-                        throb.remove();
-                        main.style.opacity = 1;
-                    });
-                });
-            e.result = deferred.promise;
-        },
-
         _initItyped: function() {
             var timeout, self = this;
             ityped.init('#homeItyped', {
@@ -53,10 +37,42 @@ define([
         },
 
         entered: function() {
+            var data = [{
+                "big": "/assets/images/pictures/home/word.jpg",
+                "normal": "/assets/images/pictures/home/word.jpg",
+                "mini": "/assets/images/pictures/home/word.jpg",
+                "desc": "",
+                "size": "800x533"
+            }, {
+                "big": "/assets/images/pictures/home/class.jpg",
+                "normal": "/assets/images/pictures/home/class.jpg",
+                "mini": "/assets/images/pictures/home/class.jpg",
+                "desc": "",
+                "size": "800x533"
+            }, {
+                "big": "/assets/images/pictures/home/back.jpg",
+                "normal": "/assets/images/pictures/home/back.jpg",
+                "mini": "/assets/images/pictures/home/back.jpg",
+                "desc": "",
+                "size": "800x533"
+            }, {
+                "big": "/assets/images/pictures/home/view.jpg",
+                "normal": "/assets/images/pictures/home/view.jpg",
+                "mini": "/assets/images/pictures/home/view.jpg",
+                "desc": "",
+                "size": "800x533"
+            }, {
+                "big": "/assets/images/pictures/home/all.jpg",
+                "normal": "/assets/images/pictures/home/all.jpg",
+                "mini": "/assets/images/pictures/home/all.jpg",
+                "desc": "",
+                "size": "800x533"
+            }]
+
             var ps = new photoSwipe({
-                photoData: this.data.photos
+                photoData: data
             });
-            this._initItyped();
+            // this._initItyped();
             var psTpl = ps.start();
             $(psTpl).appendTo($(".photoSwipeContainer"));
         },

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app, ensureAuthenticated) {
-    ["", "about", "invitative"].forEach(function(name) {
+    ["", "game", "about", "invitative", "login"].forEach(function(name) {
         app.get('/' + name, function(req, res) {
             if (req.user) {
                 res.redirect('/party/profile');
@@ -12,7 +12,7 @@ module.exports = function(app, ensureAuthenticated) {
         });
     });
 
-    ["", "splendid", "contact", "profile", "u/:username"].forEach(function(name) {
+    ["", "splendid", "contact", "profile", "u/:username", "pictures", "download"].forEach(function(name) {
         app.get("/party/" + name, ensureAuthenticated, function(req, res) {
             res.render('party', {
                 token: req.user.token,

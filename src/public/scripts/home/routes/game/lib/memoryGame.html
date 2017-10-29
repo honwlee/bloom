@@ -1,0 +1,47 @@
+<div>
+    <script id="main" type="text/x-sjs-template">
+        <div id="mg" class="mg">
+            <div class="mg__meta clearfix">
+                <div class="mg__meta--left">
+                    <span class="mg__meta--level">
+                    难度:       <span id="mg__meta--level"></span>
+                    </span>
+                    <span class="mg__meta--moves">
+                    移动次数:       <span id="mg__meta--moves">0</span>
+                    </span>
+                </div>
+                <div class="mg__meta--right">
+                    <button id="mg__button--restart" class="mg__button">重新开始</button>
+                </div>
+            </div>
+            <div id="mg__start-screen" class="mg__start-screen">
+                <h3 class="mg__start-screen--sub-heading">选择难度</h3>
+                <ul class="mg__start-screen--level-select">
+                    <li><span data-level="1">等级一 - 容易 (4 x 2)</span></li>
+                    <li><span data-level="2">等级二 - 一般 (6 x 3)</span></li>
+                    <li><span data-level="3">等级三 - 难 (8 x 4)</span></li>
+                </ul>
+            </div>
+            <div id="mg__wrapper" class="mg__wrapper container">
+                <div id="mg__contents" class="mg__contents mg__level-1"></div>
+            </div>
+        </div>
+    </script>
+    <script id="cardItem" type="text/x-sjs-template">
+        <div class="mg__tile--inner" data-id="${id}">
+            <span class="mg__tile--outside">
+                <img src="${out-src}">
+            </span>
+            <span class="mg__tile--inside">
+                <img src="${inside-src}">
+            </span>
+        </div>
+    </script>
+    <script id="end" type="text/x-sjs-template">
+        <div id="mg__onend" class="mg__onend">
+            <h2 class="mg__onend--heading">耶，等级完成！</h2>
+            <p class="mg__onend--message">一共用了 ${num} 步。</p>
+            <button id="mg__onend--restart" class="mg__button">重来?</button>
+        </div>
+    </script>
+</div>

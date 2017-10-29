@@ -93,6 +93,8 @@ exports.localAuth = function(username, password) {
                             password: password
                         }
                     }, function(error, response, body) {
+                        console.log(body);
+
                         let data = JSON.parse(body);
                         if (data.status) {
                             deferred.resolve({

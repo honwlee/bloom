@@ -111,12 +111,14 @@ define([
             }
             [{
                 key: "logout",
-                name: "退出",
+                href: "/logout",
+                name: "退出"
             }].forEach(function(item) {
                 $("<li>").attr({
                     class: item.key + "-nav"
-                }).html("<a class='nav-item' data-spa-router='false' href='/logout'>" + item.name + "</a>").appendTo(ul);
+                }).html("<a class='nav-item' data-spa-router='false' href='" + item.href + "'>" + item.name + "</a>").appendTo(ul);
             });
+
             _el.html(ul);
             partial.get("gallery-partial");
             partial.get("del-confirm-modal-partial");

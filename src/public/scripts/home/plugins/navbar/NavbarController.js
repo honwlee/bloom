@@ -28,14 +28,14 @@ define([
         };
     return spa.PluginController.inherit({
         starting: function(evt) {
-            var authFunc = authController();
-            authFunc.getNode().appendTo(document.body);
+            // var authFunc = authController();
+            // authFunc.getNode().appendTo(document.body);
             var spa = evt.spa,
                 basePath = spa.getConfig("baseUrl"),
                 routes = spa.getConfig("routes"),
                 _el = $("#sk-navbar"),
                 navClick = function(path, name) {
-                    authFunc.hide();
+                    // authFunc.hide();
                     var goPath = function() {
                         if (router.go(path, true)) {
                             setActive(name);
@@ -49,7 +49,7 @@ define([
                         } else {
                             setActive(name);
                             toastr.warning("请先登录！");
-                            authFunc.show();
+                            // authFunc.show();
                         }
                     } else {
                         goPath();
@@ -89,17 +89,17 @@ define([
                 ).appendTo(ul);
             }
 
-            [{
-                key: "signin",
-                name: "登录",
-            }].forEach(function(item) {
-                $("<li>").attr({
-                    class: item.key + "-nav"
-                }).html("<a class='nav-item' data-spa-router='false'>" + item.name + "</a>").on("click", function(e) {
-                    authFunc.show();
-                    setActive("signin");
-                }).appendTo(ul);
-            });
+            // [{
+            //     key: "signin",
+            //     name: "登录",
+            // }].forEach(function(item) {
+            //     $("<li>").attr({
+            //         class: item.key + "-nav"
+            //     }).html("<a class='nav-item' data-spa-router='false'>" + item.name + "</a>").on("click", function(e) {
+            //         // authFunc.show();
+            //         setActive("signin");
+            //     }).appendTo(ul);
+            // });
             _el.html(ul);
             partial.get("gallery-partial");
             var div = $("<div>").html(handlebars.compile("{{> gallery-partial}}")({}));

@@ -25,7 +25,27 @@ define([], function() {
                     navName: "Home"
                 },
                 controller: {
-                    type: "scripts/routes/invitative/InvitativeController"
+                    type: "scripts/routes/home/HomeController"
+                }
+            },
+            "game": {
+                pathto: "/game",
+                data: {
+                    name: 'game',
+                    navName: "照片游戏"
+                },
+                controller: {
+                    type: "scripts/routes/game/GameController"
+                }
+            },
+            "login": {
+                pathto: "/login",
+                data: {
+                    name: 'login',
+                    navName: "登录"
+                },
+                controller: {
+                    type: "scripts/routes/auth/AuthController"
                 }
             }
         }

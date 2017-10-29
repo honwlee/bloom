@@ -55,13 +55,6 @@ define([
 
                 }
             }, {
-                name: 'photos',
-                title: '精彩图片',
-                icon: 'fa-photo',
-                data: {
-
-                }
-            }, {
                 name: 'events',
                 title: '行程表',
                 icon: 'fa-calendar',
@@ -76,6 +69,15 @@ define([
 
                 }
             }];
+
+            // , {
+            //     name: 'profile',
+            //     title: '精彩图片',
+            //     icon: 'fa-photo',
+            //     data: {
+
+            //     }
+            // }
             if (window.currentUser.isAdmin) {
                 actions.push({
                     name: 'setting',
@@ -102,14 +104,14 @@ define([
                 if (currentPanel) currentPanel.addClass("hide");
                 currentPanel = $(".panel-item." + name).removeClass("hide");
             });
-            currentPanel = e.content.find(".panel-item.photos").removeClass("hide");
-            currentIcon = e.content.find(".icons .photos").addClass("active");
-            var ps = new photoSwipe({
-                photoData: []
-            });
-            var eC = e.content,
-                psTpl = ps.start();
-            $(psTpl).appendTo(eC.find(".photoSwipeContainer"));
+            currentPanel = e.content.find(".panel-item.profile").removeClass("hide");
+            currentIcon = e.content.find(".icons .profile").addClass("active");
+            // var ps = new photoSwipe({
+            //     photoData: []
+            // });
+            var eC = e.content;
+            //     psTpl = ps.start();
+            // $(psTpl).appendTo(eC.find(".photoSwipeContainer"));
             this._initProfileSetting(eC, window.currentUser.isAdmin);
             this._bindEventsAction(eC);
             this._bindUserConfig(eC);

@@ -8,7 +8,8 @@ define([
 ], function(spa, langx, $, modernizr, toastr, authTpl) {
     var AuthController = langx.Evented.inherit({
         klassName: "AuthController",
-        init: function(e) {
+        init: function(opts) {
+            this.options = opts || {};
             this.dom = $("<div>").html(authTpl);
             this.buildDom(this.dom);
         },
@@ -57,18 +58,22 @@ define([
 
             login_selected();
 
-            //close modal
-            dom.find('.cd-user-modal').on('click', function(event) {
-                if ($(event.target).is($form_modal) || $(event.target).is('.cd-close-form')) {
-                    self.hide();
-                }
-            });
-            //close modal when clicking the esc keyboard button
-            $(document).keyup(function(event) {
-                if (event.which == '27') {
-                    self.hide();
-                }
-            });
+            if(this.options.closed) {
+                //close modal
+                dom.find('.cd-user-modal').on('click', function(event) {
+                    if ($(event.target).is($form_modal) || $(event.target).is('.cd-close-form')) {
+                        self.hide();
+                    }
+                });
+                //close modal when clicking the esc keyboard button
+                $(document).keyup(function(event) {
+                    if (event.which == '27') {
+                        self.hide();
+                    }
+                });
+            } else {
+                dom.find('.cd-close-form').hide();
+            }
 
             //switch from a tab to another
             $form_modal_tab.on('click', function(event) {
@@ -333,9 +338,9 @@ define([
     });
 
     var auth;
-    var authFunc = function() {
+    var authFunc = function(opts) {
         if (!auth) {
-            auth = new AuthController();
+            auth = new AuthController(opts || {});
         }
         return auth;
     }
