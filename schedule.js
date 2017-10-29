@@ -31,9 +31,9 @@ function backupDb() {
     rule.second = 0;
 
     schedule.scheduleJob(rule, function() {
-    // schedule.scheduleJob('1-10 * * * * *', function() {
+        // schedule.scheduleJob('1-10 * * * * *', function() {
         let date = new Date();
-        let dateF = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+        let dateF = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
         fs.copy(path.join(__dirname, 'src/dbs'), path.join(__dirname, 'src/backup/dbs.' + dateF), function(err) {
             if (err) return console.error(err)
             console.log('success!')
