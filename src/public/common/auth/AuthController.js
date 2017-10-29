@@ -58,7 +58,7 @@ define([
 
             login_selected();
 
-            if(this.options.closed) {
+            if (this.options.closed) {
                 //close modal
                 dom.find('.cd-user-modal').on('click', function(event) {
                     if ($(event.target).is($form_modal) || $(event.target).is('.cd-close-form')) {
@@ -337,6 +337,8 @@ define([
         }
     });
 
+    return AuthController;
+
     var auth;
     var authFunc = function(opts) {
         if (!auth) {
@@ -345,4 +347,5 @@ define([
         return auth;
     }
     return authFunc;
+
 });
