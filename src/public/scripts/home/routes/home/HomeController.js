@@ -74,7 +74,7 @@ define([
             });
             // this._initItyped();
             var psTpl = ps.start();
-            $(psTpl).appendTo($(".photoSwipeContainer"));
+            var ps = $(psTpl).appendTo($(".photoSwipeContainer"));
         },
         exited: function() {
 

@@ -86,22 +86,33 @@
     .items-container {
         width: 100%;
         height: auto;
-        float: left;
-
+        display: flex;
+        flex-direction: column;
         a {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-touch-callout: none;
             display: block;
-            float: left;
+            text-align: center;
             margin: 0 12px 12px 0;
             width: 171px;
             line-height: 0;
         }
 
 
-
+        .__main {
+            display: flex;
+            align-content: space-around;
+        }
+        .__subs {
+            display: flex;
+            justify-content: space-between;
+        }
         a.img-main {
             width: auto;
+            height: auto;
+        }
+        a.img-sub {
+            width: 24%;
             height: auto;
         }
         figure {

@@ -279,6 +279,9 @@ $loops: 0;
         background-color: $color--xltgrey;
         box-shadow: 0 0 0 1px $color--grey;
         transform: rotateY(-180deg);
+        img {
+            height: 0;
+        }
     }
     /* some transforms for flipped cards */
     .mg__tile--inner.flipped .mg__tile--outside {
@@ -289,6 +292,9 @@ $loops: 0;
 
     .mg__tile--inner.flipped .mg__tile--inside {
         height: 100%;
+        img {
+            height: auto;
+        }
         transform: rotateY(0);
         transition: transform 1s, background 0.3s;
     }
