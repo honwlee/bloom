@@ -94,7 +94,6 @@
             display: block;
             text-align: center;
             margin: 0 12px 12px 0;
-            width: 171px;
             line-height: 0;
         }
 
@@ -112,7 +111,8 @@
             height: auto;
         }
         a.img-sub {
-            width: 24%;
+            flex: 1;
+            padding: 1px;
             height: auto;
         }
         figure {

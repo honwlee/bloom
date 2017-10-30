@@ -70,6 +70,7 @@ define([
             }]
 
             var ps = new photoSwipe({
+                subSize: 2,
                 photoData: data
             });
             // this._initItyped();
