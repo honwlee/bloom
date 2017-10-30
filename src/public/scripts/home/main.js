@@ -45,7 +45,7 @@ require(["skylark-all"], function() {
     ], function(noder, scripter, router, spa, config, $) {
         window._goTop = function(time) {
             time = time || 200;
-            $(document.body).animate({
+            $([document.body, document.documentElement]).animate({
                 "scrollTop": 0
             }, time, function() {
                 goTopShown = false;

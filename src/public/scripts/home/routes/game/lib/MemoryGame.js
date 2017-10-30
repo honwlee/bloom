@@ -115,7 +115,8 @@ define([
                 var arr = [];
                 for (var _i = 0; _i < 4; _i++) {
                     (function(__i) {
-                        arr.push(count - (__i + j * size));
+                        var value = count - (__i + j * size);
+                        if (value > 0) arr.push(value);
                     })(_i);
                 }
                 arrays.push(arr);
